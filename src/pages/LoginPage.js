@@ -1,0 +1,91 @@
+import React from 'react';
+import styled from 'styled-components';
+
+const LoginPage = () => {
+return (
+    <Container>
+        <LeftContent></LeftContent>
+        <RightContent>
+            <h1>로그인</h1>
+            <form>
+                <div>
+                <input
+                    name = 'nickname'
+                    placeholder='아이디'
+                />
+                <br/>
+                <input
+                    name = 'password'
+                    placeholder='비밀번호'
+                />
+                </div>
+                <input type='submit' value="로그인" />
+            </form>
+            </RightContent>
+        </Container>
+    );
+};
+
+const Container = styled.div`
+width : 100vw;
+height : 90vh;
+display : flex;
+justify-content: center;
+align-items: center;
+`;
+const LeftContent = styled.div`
+width : 55%;
+height : 90vh;
+background-color : #D1CFC9;
+`;
+const RightContent = styled.div`
+width : 45%;
+height : 90vh;
+display : flex;
+flex-direction: column;
+justify-content: space-evenly;
+align-items: center;
+
+h1{
+    font-size : 22px;
+}
+form{
+    height : 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items : center;
+
+    div{
+    height : 20vh;
+    display : flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    }
+};
+input{
+    width: 360px;
+    height: 55px;
+    text-align: left;
+    color: #060A0E;
+    opacity: 1;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border : 0px;
+    opacity: 1;
+    padding:0px;
+}
+input[type="submit"]{
+    color: white;
+    cursor : pointer;
+    text-align: center;
+    width: 360px;
+    height: 55px;
+    background: #0ABAB5 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border : 0px;
+    opacity: 1;
+}
+`;
+
+export default LoginPage;
