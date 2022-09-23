@@ -9,7 +9,7 @@ const Header = () => {
         <HeaderContainer>
             <NavLink 
                 className='logo'
-                to= "/main"
+                to= "/"
             >
                 <img
                     className='img' 
@@ -38,10 +38,10 @@ display : flex;
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
-background-color : black;
+background-color : white;
 
     .logo{
-    margin-left : 50px;
+    margin-left : 100px;
     width : 15%;
     display : flex;
     flex-direction : row;
@@ -55,7 +55,7 @@ background-color : black;
     }
 
     h3{
-        color:White;
-        margin-right : 50px;
+        color: black;
+        margin-right : 100px;
     }
 `;
