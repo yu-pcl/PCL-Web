@@ -50,7 +50,7 @@ background-color : white;
     text-decoration : none;
 
         .img{
-            width : 40px;
+            width : 90px;
         }
     }
 
