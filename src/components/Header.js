@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.png';
+import logo from '../assets/logo.png';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -50,7 +50,7 @@ background-color : white;
     text-decoration : none;
 
         .img{
-            width : 90px;
+            width : 120px;
         }
     }
 

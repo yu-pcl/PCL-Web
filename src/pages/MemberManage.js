@@ -2,7 +2,7 @@ import React from 'react';
 import search_img from '../assets/search.png';
 import downicon from '../assets/downicon.png';
 import memberadd from '../assets/member_add.png';
-import './MemberManage.css'
+import '../styles/MemberManage.css'
 const MemberManage = () => {
     return (
         <div className='wrap'>
