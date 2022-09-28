@@ -45,7 +45,7 @@ const Header = () => {
                 </NavLink>
                 <NavLink
                     className='login'
-                    to= "/signin"
+                    to= "/invoice"
                 >
                     <h4>
                         운송장관리
@@ -53,7 +53,7 @@ const Header = () => {
                 </NavLink>
                 <NavLink
                     className='login'
-                    to= "/signin"
+                    to= "/insight"
                 >
                     <h4>
                         인사이트
@@ -69,7 +69,7 @@ const Header = () => {
                 </NavLink>
                 <NavLink
                     className='login'
-                    to= "/signin"
+                    to= "/expect"
                 >
                     <h4>
                         업무량예측

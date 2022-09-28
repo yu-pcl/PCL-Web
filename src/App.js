@@ -9,6 +9,9 @@ import MemberAdd from './pages/MemberAdd';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import TestPage from "./pages/TestPage";
+import InvoicePage from './pages/InvoicePage';
+import InsightPage from './pages/Insightpage';
+import Expectpage from './pages/Expectpage';
 
 
 function App() {
@@ -24,8 +27,11 @@ function App() {
           <Route path="/manager" element={<ManagerPay/>}/>
           <Route path="/employee" element={<EmployeePay/>}/>
           <Route path="/add" element={<MemberAdd/>}/>
-          <Route path="/test" element={<TestPage/>}/>
+          <Route path="/invoice" element={<InvoicePage/>}/>
+          <Route path="/insight" element={<InsightPage/>}/>
+          <Route path="/expect" element={<Expectpage/>}/>
 
+          <Route path="/test" element={<TestPage/>}/>
 
           <Route path="*" element={<NotFoundpage/>}/>
         </Routes>

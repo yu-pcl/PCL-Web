@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const EmployeePay = () => {
     return (
         <container>
-
+            직원용 급여 관리화면
         </container>
     );
 };
