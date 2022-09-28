@@ -1,0 +1,76 @@
+@charset "utf-8";
+*{margin: 0;padding: 0;}
+ul,ol{list-style: none;}
+a{text-decoration: none;}
+button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.wwrap{
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+}
+.up{
+}
+.member_pic{
+    position: absolute;
+    left: 720px;
+    top: 100px;
+}
+.member_pic img{
+    width: 117px;
+    height: 117px;
+    border: 2px solid #007200;
+    border-radius: 59px;
+    opacity: 1;
+
+}
+.logogo{
+    position: absolute;
+    left: 877px;
+    top: 120px;
+}
+.logogo img{
+    position: absolute;
+    width: 179px;
+    height: 70px;
+}
+.member_input{
+    position: absolute;
+    top: 190px;
+    left: 877px;
+}
+.member_input input{
+    width: 277px;
+    height: 56px;
+    border: none;
+    display: block;
+    background: #0000000D 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    margin-top: 30px;
+    padding-left: 10px;
+}
+.member_btn{
+    position: absolute;
+    top: 750px;
+    left: 1400px;
+
+}
+.member_btn button{
+    width: 116px;
+    height: 50px;
+    background: none;
+}
+.member_btn button:first-child{
+    border: 2px solid #007200;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+.member_btn button:nth-child(2){
+    border-radius: 5px;
+
+    border: 2px solid #060A0E;
+}

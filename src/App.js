@@ -5,8 +5,11 @@ import MemberManage from './pages/MemberManage';
 import ManagerPay from './pages/ManagerPay';
 import EmployeePay from './pages/EmployeePay';
 import NotFoundpage from './pages/NotFoundpage';
+import MemberAdd from './pages/MemberAdd';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import TestPage from "./pages/TestPage";
+
 
 function App() {
   return (
@@ -18,8 +21,12 @@ function App() {
           <Route path="/" element={<MainPage />}/>
           <Route path="/signin" element={<LoginPage />}/>
           <Route path="/manage" element={<MemberManage/>}/>
-          <Route path="/Manager" element={<ManagerPay/>}/>
-          <Route path="/Employee" element={<EmployeePay/>}/>
+          <Route path="/manager" element={<ManagerPay/>}/>
+          <Route path="/employee" element={<EmployeePay/>}/>
+          <Route path="/add" element={<MemberAdd/>}/>
+          <Route path="/test" element={<TestPage/>}/>
+
+
           <Route path="*" element={<NotFoundpage/>}/>
         </Routes>
       </BrowserRouter>
