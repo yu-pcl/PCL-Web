@@ -17,14 +17,68 @@ const Header = () => {
                     alt="logo"
                 />
             </NavLink>
-            <NavLink
+            
+            {/* 로그인 전  */}
+            {/* <NavLink
                 className='login'
                 to= "/signin"
             >
                 <h3>
                     로그인
                 </h3>   
-            </NavLink>
+            </NavLink> */}
+            
+            {/* 로그인 후 */}
+            <div className='navs'>
+                <NavLink
+                    // 관리자용
+                    // className='manager'
+                    // to= "/manager"
+
+                    // 직원용
+                    className='employee'
+                    to= "/employee"
+                >
+                    <h4>
+                        급여 관리
+                    </h4>   
+                </NavLink>
+                <NavLink
+                    className='login'
+                    to= "/signin"
+                >
+                    <h4>
+                        운송장관리
+                    </h4>   
+                </NavLink>
+                <NavLink
+                    className='login'
+                    to= "/signin"
+                >
+                    <h4>
+                        인사이트
+                    </h4>   
+                </NavLink>
+                <NavLink
+                    className='manage'
+                    to= "/manage"
+                >
+                    <h4>
+                        직원관리
+                    </h4>   
+                </NavLink>
+                <NavLink
+                    className='login'
+                    to= "/signin"
+                >
+                    <h4>
+                        업무량예측
+                    </h4>   
+                </NavLink>
+                <h4 className='name'>
+                    name 님
+                </h4>
+            </div>
         </HeaderContainer>
     );
 };
@@ -57,5 +111,17 @@ background-color : white;
     h3{
         color: black;
         margin-right : 100px;
+    }
+    h4{
+        color: black;
+    }
+    .navs{
+        width: 50vw;
+        display: flex;
+        flex-direction : row;
+        justify-content: space-around;
+    }
+    .name{
+        color: #007200;
     }
 `;

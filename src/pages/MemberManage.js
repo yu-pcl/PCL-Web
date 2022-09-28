@@ -1,33 +1,31 @@
-import './MemberManage.css';
+import React from 'react';
+import search_img from '../assets/search.png';
+import downicon from '../assets/downicon.png';
+import memberadd from '../assets/member_add.png';
+import '../styles/MemberManage.css'
+const MemberManage = () => {
+    return (
+        <div className='wrap'>
+            <span className='member_search'>
+              <input type='submit 'name='nn'className='search_input'/>
+              <button className='search_img'><img src={search_img}/></button>    
+            </span>
+            
+            <div className='dropdown'>
+              <button className='dropbtn'>
+                최신등록순
+                <span className='down_icon'><img src={downicon}/></span>
+                </button>
+              <div className='dropdown-content'>
+                <p>최신 등록순</p>
+                <p>이름순</p>
+              </div>
+        
 
-function MemberManage() {
-  return (
-    <div className="wrap">
-      <header className="header">
-        <span className='logo'>
-
-        </span>
-        <nav>
-
-        </nav>
-        <span className='member_login_name'>
-
-        </span>
-      </header>
-      <section>
-        <div className='member_search'>
-
+            </div>
+            <button className='member_add'><img src={memberadd}/></button>    
         </div>
-        <div className='member_manage'>
-      
-      
-        </div>
-        <div className='member_list'>
-        {/* 직원 리스트 - 백엔드에서 데이터 넣는 곳 */}
-        </div>
-      </section>
-    </div>
-  );
-}
+    );
+};
 
 export default MemberManage;
