@@ -116,7 +116,7 @@ background-color : white;
         color: black;
     }
     .navs{
-        width: 50vw;
+        width: 55vw;
         display: flex;
         flex-direction : row;
         justify-content: space-around;
