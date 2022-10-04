@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useState } from 'react';
+import search_img from '../assets/search.png';
 
 
 const dummy = {
@@ -40,6 +41,7 @@ const EmployeePay = () => {
                     <input
                         name = 'name'
                     />
+                    <button className='search_img'><img src={search_img}/></button>
                 </div>
             </Search>
             <Top>
@@ -145,12 +147,25 @@ const Search = styled.div`
     margin : 1vh 0px;    
 
     div{
+        display : flex;
+        align-items: center;
+        justify-content: space-evenly;
         width: 250px;
         height: 40px;
         background: #FFFFFF 0% 0% no-repeat padding-box;
         box-shadow: 0px 3px 6px #00000029;
         border-radius: 5px;
         opacity: 1;
+
+        input{
+            width: 200px;
+            height: 30px;
+        }
+    }
+
+    .search_img{
+        width: 32px;
+        height: 32px;
     }
 `
 const Top = styled.div`

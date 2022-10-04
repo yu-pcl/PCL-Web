@@ -10,7 +10,7 @@ return (
                 <h1>로그인</h1>
                 <div>
                 <input
-                    name = 'nickname'
+                    name = 'name'
                     placeholder='아이디'
                 />
                 <input
