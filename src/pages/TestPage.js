@@ -1,26 +1,34 @@
-import React from 'react';
-import {useEffect, useState} from 'react';
+import React, { Component } from 'react';
 
-const TestPage = () => {
-    // 메시지 초기값 (테스트용)
-    const [message, setMessage] = useState("");
+class TestPage extends Component {
+    state = {
+        parcels: []
+    };
 
-    // useEffect(함수, 배열) : 컴포넌트가 화면에 나타났을 때 자동 실행
-    useEffect(() => {
-        // fetch(url, options) : Http 요청 함수
-        fetch("/test")
-            .then(response => response.text())
-            .then(message => {
-                setMessage(message);
+    async componentDidMount() {
+        try {
+            const res = await fetch('http://127.0.0.1:8000/api/parcel/1000');
+            const parcels = await res.json();
+            this.setState({
+                parcels
             });
-    }, [])
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
-
-    return (
-        <div className='wwrap'>
-            {message}
-        </div>
-    );
-};
+    render() {
+        return (
+            <div>
+                {this.state.parcels.map(item => (
+                    <div key={item.id}>
+                        <h1>{item.worker_id}</h1>
+                        <span>{item.num}</span>
+                    </div>
+                ))}
+            </div>
+        );
+    }
+}
 
 export default TestPage;
