@@ -10,8 +10,8 @@ return (
                 <h1>로그인</h1>
                 <div>
                 <input
-                    name = 'name'
-                    placeholder='아이디'
+                    name = 'worker_id'
+                    placeholder='사원번호'
                 />
                 <input
                     name = 'password'

@@ -7,7 +7,7 @@ class TestPage extends Component {
 
     async componentDidMount() {
         try {
-            const res = await fetch('http://127.0.0.1:8000/api/parcel/1000');
+            const res = await fetch('http://acslab.toygoon.com:8000/api/parcel/1000');
             const parcels = await res.json();
             this.setState({
                 parcels
