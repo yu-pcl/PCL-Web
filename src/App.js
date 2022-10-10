@@ -5,7 +5,7 @@ import MemberManage from './pages/MemberManage';
 import ManagerPay from './pages/ManagerPay';
 import EmployeePay from './pages/EmployeePay';
 import NotFoundpage from './pages/NotFoundpage';
-import MemberAdd from './pages/MemberAdd';
+import MemberAdd from './components/MemberAdd';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import TestPage from "./pages/TestPage";

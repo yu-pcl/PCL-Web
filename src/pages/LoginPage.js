@@ -37,7 +37,7 @@ return (
                     placeholder='비밀번호'
                 />
                 </div>
-                <input type='submit' value="로그인" onClick={()=>LoginAxios()}/>
+                <input type='submit' value="로그인" /*onClick={()=>LoginAxios()}*//>
             </form>
             </RightContent>
         </Container>

@@ -4,6 +4,9 @@ import downicon from '../assets/downicon.png';
 import memberadd from '../assets/member_add.png';
 import '../styles/MemberManage.css'
 const MemberManage = () => {
+  function addClick(e){
+    window.location.replace("/add")
+  }
     return (
         <div className='wrap'>
             <span className='member_search'>
@@ -23,7 +26,7 @@ const MemberManage = () => {
         
 
             </div>
-            <button className='member_add'><img src={memberadd}/></button>    
+            <button className='member_add' onClick={addClick}><img src={memberadd}/></button>    
         </div>
     );
 };
