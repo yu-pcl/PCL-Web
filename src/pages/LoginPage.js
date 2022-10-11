@@ -10,7 +10,7 @@ const LoginPage = () => {
 
     function goToMain(e){
         e.preventDefault();
-        fetch('http://localhost:3000', {
+        fetch('http://acslab.toygoon.com:8080/', {
           method: 'POST',
           body: JSON.stringify({
             worker_id: this.state.worker_id,

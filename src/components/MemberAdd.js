@@ -1,80 +1,56 @@
-import React,{useState} from 'react';
+import React from 'react';
 import '../styles/MemberAdd.css';
 import logo from '../assets/logo.png';
 import memberpic from '../assets/member_pic.jpeg';
-import axios from 'axios';
+import { useState } from 'react';
 
-class MemberAdd extends React.Component {
+const MemberAdd = () => {
 
-    constructor(props){
-        super(props);
-        this.state={
-            worker_name:'',
-            worker_id:'',
-            phone:'',
-            email:''
-        }
+    const [fullname, setfullname] = useState();
+    const [worker_id, setworker_id] = useState();
+    const [password, setpassword] = useState();
+    const [is_superuser, setis_superuser] = useState();
 
-        this.handleFormSubmit=this.handleFormSubmit.bind(this);
-        this.handleValueChange=this.handleValueChange.bind(this);
-        this.addmember = this.addmember.bind(this);
-    }
-    handleFormSubmit(e){
-        e.preventDefalut()
-        this.addmember()
-        .then((response)=>{
-            console.log(response.data);
+
+    function addMember() {
+        fetch('http://acslab.toygoon.com:8000/api/register/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                worker_id: worker_id,
+                password: password,
+                fullname: fullname,
+                is_superuser: is_superuser,
+            }),
         })
-    }
-    handleValueChange(e){
-        let nextState = {};
-        nextState[e.target.name]=e.target.value;
-        this.setState(nextState);
+            .then(res => res.json())
     }
 
-    addmember(){
-        const url ='http://localhost:3000/add'
-        const formdata = new FormData();
-        formdata.append('worker_name',this.state.worker_name);
-        formdata.append('worker_id',this.state.worker_id);
-        formdata.append('phone',this.state.phone);
-        formdata.append('email',this.state.email);
 
-        const config={
-            headers:{
-                'content-type':'multipart/form-data'
-
-            }
-        }
-
-        return axios.post(url,formdata,config)
-    }
-    render(){
-        return (
-            <div className='wwrap'>
-                <div className='up'>
-                    <span className='member_pic'><img src={memberpic}/></span>
-                    <span className='logogo'><img src={logo}/></span>
-                </div>
-                <form className='member_input' onSubmit={this.handleFormSubmit}>
-                    <input placeholder='이름' type="text" name='worker_name' value={this.state.worker_name} onChange={this.handleValueChange}/>
-                    <input placeholder='사원번호' type="number" name='worker_id' value={this.state.worker_id} onChange={this.handleValueChange} />
-                    <input placeholder='전화번호'type="number" name='phone' value={this.state.phone} onChange={this.handleValueChange}/>
-                    <input placeholder='이메일' type="text" name='email' value={this.state.email} onChange={this.handleValueChange}/>
-                    <span className='member_btn'>
-                        <button type='submit'>등록</button>
-                        <button>삭제</button>
-                    </span>  
-                
-                </form>
-                
+    return (
+        <div className='wwrap'>
+            <div className='up'>
+                <span className='member_pic'><img src={memberpic} /></span>
+                <span className='logogo'><img src={logo} /></span>
             </div>
-        )
-    };
-    
+            <form className='member_input'>
+                <input placeholder='사원번호' type="string" name='worker_id'/>
+                <input placeholder='비밀번호' type="string" name='password'/>
+                <input placeholder='실명' type="string" name='fullname'/>
+                <input placeholder='관리자여부' type="boolean" name='is_superuser'/>
+                <span className='member_btn'>
+                    <button type='submit' onClick={addMember()}>등록</button>
+                    <button>삭제</button>
+                </span>
 
-    
-    
+            </form>
+
+        </div>
+    );
+
+
 };
 
 export default MemberAdd;
