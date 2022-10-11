@@ -33,7 +33,7 @@ class MemberAdd extends React.Component {
     }
 
     addmember(){
-        const url ='http://acslab.toygoon.com:8080/add'
+        const url ='http://localhost:3000/add'
         const formdata = new FormData();
         formdata.append('worker_name',this.state.worker_name);
         formdata.append('worker_id',this.state.worker_id);

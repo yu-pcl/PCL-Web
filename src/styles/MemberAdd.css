@@ -55,8 +55,9 @@ button {
 }
 .member_btn{
     position: absolute;
-    top: 750px;
-    left: 1400px;
+    top: 500px;
+    left: 650px;
+    display: flex;
 
 }
 .member_btn button{

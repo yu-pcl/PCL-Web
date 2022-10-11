@@ -4,7 +4,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 const LoginPage = () => {
-/*
+
     function LoginAxios(data){
         const login_url = 'http://acslab.toygoon.com:8080/signin';
         const userinfo ={
@@ -13,13 +13,13 @@ const LoginPage = () => {
         }    
         axios.post(login_url,userinfo)
         .then((res)=>{
-            console.log(res);
+            alert(res);
         })
         .catch((err)=>{
             console.log(err)
         })
     }
-    */
+    
    
 return (
     <Container>
@@ -37,7 +37,7 @@ return (
                     placeholder='비밀번호'
                 />
                 </div>
-                <input type='submit' value="로그인" /*onClick={()=>LoginAxios()}*//>
+                <input type='submit' value="로그인" onClick={()=>LoginAxios()}/>
             </form>
             </RightContent>
         </Container>
