@@ -1,26 +1,49 @@
-import axios from 'axios';
+
 import React from 'react';
-import { useState } from 'react';
 import styled from 'styled-components';
+import { useState} from 'react';
 
 const LoginPage = () => {
 
-    function LoginAxios(data){
-        const login_url = 'http://acslab.toygoon.com:8080/signin';
-        const userinfo ={
-            worker_id:data.worker_id,
-            password:data.password,
-        }    
-        axios.post(login_url,userinfo)
-        .then((res)=>{
-            alert(res);
+    const [worker_id, setworker_id] = useState();
+    const [password, setpassword] = useState();
+
+    function goToMain(e){
+        e.preventDefault();
+        fetch('http://localhost:3000', {
+          method: 'POST',
+          body: JSON.stringify({
+            worker_id: this.state.worker_id,
+            password: this.state.password,
+          }),
         })
-        .catch((err)=>{
-            console.log(err)
-        })
-    }
+          .then(response => response.json())
+          .then(response => {
+            if (response.token) {
+              localStorage.setItem('token', response.token);
+              this.props.history.push('/MainPage.js');
+            } else {
+              alert('다시 로그인하세요.');
+            }
+          });
+      };
     
-   
+function login(){
+    fetch('http://acslab.toygoon.com:8000/api/login/',{
+        method:'POST',
+        headers:{
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            worker_id:worker_id,
+            password:password,
+        }),
+    })
+    .then(res=>res.json())
+    .then(result=>
+        result.token ? goToMain():alert(result.message));
+}
+
 return (
     <Container>
         <LeftContent></LeftContent>
@@ -37,7 +60,7 @@ return (
                     placeholder='비밀번호'
                 />
                 </div>
-                <input type='submit' value="로그인" onClick={()=>LoginAxios()}/>
+                <input type='submit' value="로그인" onClick={login()}/>
             </form>
             </RightContent>
         </Container>
