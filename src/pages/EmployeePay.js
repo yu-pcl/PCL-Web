@@ -20,9 +20,9 @@ const EmployeePay = () => {
     const [health, setHealth] = useState([]);
     const [employment, setEmployment] = useState([]);
     const [occupational, setOccupational] = useState([]);
-    const [payTotal, setPayTotal] = useState((dummy.basicPay+dummy.deliveryFee).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    const [payTotal, setPayTotal] = useState([]);
     const [insuranceTotal, setInsuranceTotal] = useState([]);
-    const [total, setTotal] = useState((dummy.basicPay+dummy.deliveryFee-dummy.pension-dummy.health-dummy.employment-dummy.occupational).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    const [total, setTotal] = useState([]);
 
     useEffect(()=> {
         fetch('http://acslab.toygoon.com:8000/api/employ/1000', {

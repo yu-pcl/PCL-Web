@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import search_img from '../assets/search.png';
+import axios from 'axios';
 
 
 const dummy = {
@@ -22,9 +23,9 @@ const ManagerPay = () => {
     const [health, setHealth] = useState([]);
     const [employment, setEmployment] = useState([]);
     const [occupational, setOccupational] = useState([]);
-    const [payTotal, setPayTotal] = useState((dummy.basicPay+dummy.deliveryFee).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    const [payTotal, setPayTotal] = useState([]);
     const [insuranceTotal, setInsuranceTotal] = useState([]);
-    const [total, setTotal] = useState((dummy.basicPay+dummy.deliveryFee-dummy.pension-dummy.health-dummy.employment-dummy.occupational).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    const [total, setTotal] = useState([]);
 
     useEffect(()=> {
         fetch('http://acslab.toygoon.com:8000/api/employ/1000', {
@@ -136,7 +137,7 @@ export default ManagerPay;
 
 const Container = styled.div`
     width: 100vw;
-    height: 82vh;
+    height: 88vh;
     display : flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -144,7 +145,7 @@ const Container = styled.div`
 `
 const Content = styled.div`
     width: 60vw;
-    height: 80vh;
+    height: 85vh;
     display : flex;
     flex-direction: column;
     justify-content: space-evenly;
