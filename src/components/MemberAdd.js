@@ -26,6 +26,7 @@ const MemberAdd = () => {
             }),
         })
             .then(res => res.json())
+            .then(console.log(worker_id))
     }
 
 

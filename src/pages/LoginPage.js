@@ -5,28 +5,28 @@ import { useState} from 'react';
 
 const LoginPage = () => {
 
-    const [worker_id, setworker_id] = useState();
-    const [password, setpassword] = useState();
+    const [worker_id, setworker_id] = useState([]);
+    const [password, setpassword] = useState([]);
 
     function goToMain(e){
         e.preventDefault();
         fetch('http://acslab.toygoon.com:8080/', {
-          method: 'POST',
-          body: JSON.stringify({
+            method: 'POST',
+            body: JSON.stringify({
             worker_id: this.state.worker_id,
             password: this.state.password,
-          }),
+            }),
         })
-          .then(response => response.json())
-          .then(response => {
-            if (response.token) {
-              localStorage.setItem('token', response.token);
-              this.props.history.push('/MainPage.js');
-            } else {
-              alert('다시 로그인하세요.');
-            }
-          });
-      };
+        .then(response => response.json())
+        .then(response => {
+        if (response.token) {
+            localStorage.setItem('token', response.token);
+            this.props.history.push('/MainPage.js');
+        } else {
+            alert('다시 로그인하세요.');
+        }
+        });
+    };
     
 function login(){
     fetch('http://acslab.toygoon.com:8000/api/login/',{
@@ -54,6 +54,7 @@ return (
                 <input
                     name = 'worker_id'
                     placeholder='사원번호'
+
                 />
                 <input
                     name = 'password'
