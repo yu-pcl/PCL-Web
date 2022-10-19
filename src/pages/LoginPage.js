@@ -1,67 +1,77 @@
-
-import React from 'react';
+import React, { useEffect }from 'react';
 import styled from 'styled-components';
 import { useState} from 'react';
+import {useDispatch} from 'react-redux';
+import axios from 'axios';
+import { LOGIN_USER } from './LoginType';
+import { json, Navigate } from 'react-router-dom';
+import { setCookie } from './Cooke';
+import { getCookie } from './Cooke';
 
 const LoginPage = () => {
 
-    const [worker_id, setworker_id] = useState([]);
-    const [password, setpassword] = useState([]);
+    const [worker_id,Setworker_id]=useState("");
+    const [password,Setpassword]=useState("");
+    const dispatch = useDispatch();
 
-    function goToMain(e){
-        e.preventDefault();
-        fetch('http://acslab.toygoon.com:8080/', {
-            method: 'POST',
-            body: JSON.stringify({
-            worker_id: this.state.worker_id,
-            password: this.state.password,
-            }),
-        })
-        .then(response => response.json())
-        .then(response => {
-        if (response.token) {
-            localStorage.setItem('token', response.token);
-            this.props.history.push('/MainPage.js');
-        } else {
-            alert('다시 로그인하세요.');
-        }
-        });
-    };
     
-function login(){
-    fetch('http://acslab.toygoon.com:8000/api/login/',{
-        method:'POST',
-        headers:{
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+    //로그인 post
+    function loginUser(dataToSubmit){
+        const request = axios.post('http://acslab.toygoon.com:8000/api/login/',dataToSubmit)
+            .then(function(response){
+                console.log(response.data);
+
+                //토큰 쿠키 저장
+                const access_token = response.data.token;
+                setCookie("access_token",`${access_token}`);
+                //토큰 반환
+                axios.defaults.headers.common['Authorization']=`Bearer ${access_token}`;
+            });
+
+            return{
+                type:LOGIN_USER,
+                payload:request
+            }
+            //+로그인 성공시 메인 페이지 이동
+    }
+    
+    
+    const onIdHandler=(event)=>{
+        Setworker_id(event.currentTarget.value);
+    }
+    const onPasswordHandler=(event)=>{
+        Setpassword(event.currentTarget.value);
+    }
+    const onSubmitHandler=(event)=>{
+        event.preventDefault();
+        let body = {
             worker_id:worker_id,
             password:password,
-        }),
-    })
-    .then(res=>res.json())
-    .then(result=>
-        result.token ? goToMain():alert(result.message));
-}
+        }
+        dispatch(loginUser(body));
+    }
 
 return (
     <Container>
         <LeftContent></LeftContent>
         <RightContent>
-            <form>
+            <form onSubmit={onSubmitHandler}>
                 <h1>로그인</h1>
                 <div>
                 <input
-                    name = 'worker_id'
+                    type = 'text'
+                    value={worker_id}
                     placeholder='사원번호'
-
+                    onChange={onIdHandler}
                 />
                 <input
-                    name = 'password'
+                    type = 'password'
+                    value={password}
                     placeholder='비밀번호'
+                    onChange={onPasswordHandler}
                 />
                 </div>
-                <input type='submit' value="로그인" onClick={login()}/>
+                <input type='submit' value="로그인" formAction=''/>
             </form>
             </RightContent>
         </Container>
