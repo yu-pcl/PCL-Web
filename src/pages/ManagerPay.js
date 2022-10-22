@@ -9,7 +9,7 @@ const dummy = {
     "number" : 10236,
     "name" : "이의찬",
     "year" : 2022,
-    "month" : 10,
+    "month" : 10
 };
 
 const ManagerPay = () => {
