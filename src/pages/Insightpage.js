@@ -1,13 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import { PieChart } from 'react-minimal-pie-chart';
 
 const dummy = {
+    "size1": 112,
+    "size2": 578,
+    "size3": 348,
     "monthlySales" : 263000000,
     "dailySales" : 3700000
 };
 
 const Insight = () => {
+    const [size1, SetSize1] = useState(dummy.size1);
+    const [size2, SetSize2] = useState(dummy.size2);
+    const [size3, SetSize3] = useState(dummy.size3);
     const [monthlySales, SetMonthlySales] = useState(dummy.monthlySales);
     const [dailySales, SetDailySales] = useState(dummy.dailySales);
 
@@ -22,15 +29,53 @@ const Insight = () => {
                     <div className='box right'>직원 수 그래프</div>
                 </MiddleContent>
                 <BottomContent>
-                    <div className='box left'>택배 수 차트</div>
+                    <div className='box left'>
+                        <h5>규격 별 택배 수 차트</h5>
+                        <div className='charts'>
+                            <div className='chart'>
+                                <div className='chartTop'>
+                                    <p>규격</p>
+                                    <p>개수%</p>
+                                </div>
+                                <div className='chartMain'>
+                                    <div className='size'>
+                                        <p>1</p>
+                                        <p>1호</p>
+                                        <p>{size1}</p>
+                                    </div>
+                                    <div className='size'>
+                                        <p>2</p>
+                                        <p>2호</p>
+                                        <p>{size2}</p>
+                                    </div>
+                                    <div className='size'>
+                                        <p>3</p>
+                                        <p>3호</p>
+                                        <p>{size3}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='pieChart'>
+                                <PieChart
+                                data={[
+                                    { title: 'One', value: size1, color: '#E38627' },
+                                    { title: 'Two', value: size2, color: '#C13C37' },
+                                    { title: 'Three', value: size3, color: '#6A2135' },
+                                ]}
+                                lineWidth={20}
+                                radius={40}
+                                />
+                            </div>
+                        </div>
+                    </div>
                     <div className='right'>
                         <div className='box right1'>
-                            <p>₩</p>
+                            <h4>₩</h4>
                             <h3 className='sales'>{monthlySales.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h3>
                             <h5>이달의 매출</h5>
                         </div>
                         <div className='box right2'>
-                            <p>₩</p>
+                            <h4>₩</h4>
                             <h3 className='sales'>{dailySales.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h3>
                             <h5>오늘의 매출</h5>
                         </div>
@@ -97,6 +142,65 @@ const BottomContent = styled.div`
 
     .left{
         width: 34vw;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+
+        h5{
+            width: 31vw;
+            height: 4vh;
+            display: flex;
+            border-bottom: 1px solid #70707029;
+            align-items: center;
+            padding-left: 1vw;
+        }
+        .charts{
+            display: flex;
+            width: 34vw;
+            height: 20vh;
+            justify-content: space-around;
+            align-items: center;
+
+            .chart{
+                width: 15vw;
+                height: 15vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+    
+                .chartTop{
+                    width: 13vw;
+                    height: 3vh;
+                    display: flex;
+                    justify-content: space-evenly;
+                    padding-left: 4vw;
+                    background: #F5F5F5 0% 0% no-repeat padding-box;
+                    border-radius: 11px;
+                    color: #060A0E89;
+                }
+    
+                .chartMain{
+                    width: 13vw;
+                    height: 12vh;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-evenly;
+    
+                    .size{
+                        width: 13vw;
+                        display: flex;
+                        justify-content: space-around;
+                    }
+                }
+            }
+            
+            .pieChart{
+                width: 10vw;
+                height: 20vh;
+            }
+        }
     }
 
     .right{
@@ -111,11 +215,11 @@ const BottomContent = styled.div`
             justify-content: space-around;
             align-items: center;
 
-            p{
+            h4{
                 background: #F5F5F5 0% 0% no-repeat padding-box;
                 border-radius: 11px;
                 color : #0072006E;
-                padding: 2px;
+                padding: 4px;
                 margin-left: 1vw;
                 align-self: start;
             }
@@ -128,11 +232,11 @@ const BottomContent = styled.div`
             justify-content: space-around;
             align-items: center;
 
-            p{
+            h4{
                 background: #F5F5F5 0% 0% no-repeat padding-box;
                 border-radius: 11px;
                 color : #0072006E;
-                padding: 2px;
+                padding: 4px;
                 margin-left: 1vw;
                 align-self: start;
             }
