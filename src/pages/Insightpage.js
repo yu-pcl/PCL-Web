@@ -39,17 +39,26 @@ const Insight = () => {
                                 </div>
                                 <div className='chartMain'>
                                     <div className='size'>
-                                        <p>1</p>
+                                        <div className='colors'>
+                                            <p className='color1'></p>
+                                            <p>1</p>
+                                        </div>
                                         <p>1호</p>
                                         <p>{size1}</p>
                                     </div>
                                     <div className='size'>
-                                        <p>2</p>
+                                        <div className='colors'>
+                                            <p className='color2'></p>
+                                            <p>2</p>
+                                        </div>
                                         <p>2호</p>
                                         <p>{size2}</p>
                                     </div>
                                     <div className='size'>
-                                        <p>3</p>
+                                        <div className='colors'>
+                                            <p className='color3'></p>
+                                            <p>3</p>
+                                        </div>
                                         <p>3호</p>
                                         <p>{size3}</p>
                                     </div>
@@ -159,7 +168,7 @@ const BottomContent = styled.div`
             display: flex;
             width: 34vw;
             height: 20vh;
-            justify-content: space-around;
+            justify-content: space-evenly;
             align-items: center;
 
             .chart{
@@ -175,7 +184,7 @@ const BottomContent = styled.div`
                     height: 3vh;
                     display: flex;
                     justify-content: space-evenly;
-                    padding-left: 4vw;
+                    padding-left: 5vw;
                     background: #F5F5F5 0% 0% no-repeat padding-box;
                     border-radius: 11px;
                     color: #060A0E89;
@@ -189,9 +198,35 @@ const BottomContent = styled.div`
                     justify-content: space-evenly;
     
                     .size{
-                        width: 13vw;
+                        width: 12vw;
                         display: flex;
-                        justify-content: space-around;
+                        justify-content: space-between;
+                        align-items: center;
+                        
+                        .colors{
+                            width: 2vw;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+
+
+                            .color1{
+                                width: 10px;
+                                height: 10px;
+                                background: #E38627 0% 0% no-repeat padding-box;
+                            }
+                            .color2{
+                                width: 10px;
+                                height: 10px;
+                                background: #C13C37 0% 0% no-repeat padding-box;
+                            }
+                            .color3{
+                                width: 10px;
+                                height: 10px;
+                                background: #6A2135 0% 0% no-repeat padding-box;
+                            }
+                        }
+                        
                     }
                 }
             }
@@ -214,15 +249,6 @@ const BottomContent = styled.div`
             flex-direction: column;
             justify-content: space-around;
             align-items: center;
-
-            h4{
-                background: #F5F5F5 0% 0% no-repeat padding-box;
-                border-radius: 11px;
-                color : #0072006E;
-                padding: 4px;
-                margin-left: 1vw;
-                align-self: start;
-            }
         }
         
         .right2{
@@ -231,15 +257,15 @@ const BottomContent = styled.div`
             flex-direction: column;
             justify-content: space-around;
             align-items: center;
-
-            h4{
-                background: #F5F5F5 0% 0% no-repeat padding-box;
-                border-radius: 11px;
-                color : #0072006E;
-                padding: 4px;
-                margin-left: 1vw;
-                align-self: start;
-            }
+        }
+        
+        h4{
+            background: #F5F5F5 0% 0% no-repeat padding-box;
+            border-radius: 11px;
+            color : #0072006E;
+            padding: 4px;
+            margin-left: 1vw;
+            align-self: start;
         }
 
         .sales{
