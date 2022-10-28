@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-
 const dummy = {
     "monthlySales" : 263000000,
     "dailySales" : 3700000
@@ -18,8 +17,7 @@ const Insight = () => {
                     <div className='box'>일러스트</div>
                 </TopContent>
                 <MiddleContent>
-                    <div className='box left'>재정현황 그래프</div>
-                    <div className='box right'>직원 수 그래프</div>
+                    <div className='box left'></div><div className='box right'></div>
                 </MiddleContent>
                 <BottomContent>
                     <div className='box left'>택배 수 차트</div>
