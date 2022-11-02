@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import search_img from '../assets/search.png';
 import downicon from '../assets/downicon.png';
 import memberadd from '../assets/member_add.png';
 import '../styles/MemberManage.css';
+import axios from 'axios';
+import {useDispatch} from 'react-redux';
+import { MEMBER_LIST } from './user_type';
 
 function Line(props){
   return <div className='line'>
@@ -17,6 +20,30 @@ function Line(props){
 };
 
 const MemberManage = () => {
+
+  const [member_list, setMemberList]=useState([]);
+  const [count_per_page,setCountPerPage]=useState(10);//페이지당출력할객체수
+  const [current_page,setCurrentPage]=useState(1);//현재페이지번호(0부터시작)
+  const dispatch = useDispatch();
+
+    axios.post('http://acslab.toygoon.com:8000/api/userlist/',{
+      count_per_page:count_per_page,
+      current_page:current_page,
+    }).then(function(response){
+        console.log(response.data);
+      });
+  
+
+    useEffect(()=>{
+      const listData = async()=>{
+        const response =await axios.get('http://acslab.toygoon.com:8000/api/userlist/');
+        setMemberList(response.data);
+      };
+      listData();
+    },[]);
+    console.log(member_list);
+
+
   function addClick(e){
     window.location.replace("/add")
   }
