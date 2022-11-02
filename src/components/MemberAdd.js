@@ -37,10 +37,12 @@ const MemberAdd = () => {
                 <span className='logogo'><img src={logo} /></span>
             </div>
             <form className='member_input'>
-                <input placeholder='사원번호' type="string" name='worker_id'/>
-                <input placeholder='비밀번호' type="string" name='password'/>
-                <input placeholder='실명' type="string" name='fullname'/>
-                <input placeholder='관리자여부' type="boolean" name='is_superuser'/>
+                <div className='inputs'>
+                    <input placeholder='사원번호' type="string" name='worker_id'/>
+                    <input placeholder='비밀번호' type="string" name='password'/>
+                    <input placeholder='실명' type="string" name='fullname'/>
+                    <input placeholder='관리자여부' type="boolean" name='is_superuser'/>
+                </div>
                 <span className='member_btn'>
                     <button type='submit' onClick={addMember()}>등록</button>
                     <button>삭제</button>

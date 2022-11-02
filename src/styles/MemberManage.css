@@ -6,21 +6,25 @@ button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-  }
+}
 
 body{
     background-color: #FAFAFA;
 }
 .wrap{
-    position: relative;
-    width: 1312px;
+    width: 100vw;
     height: 90vh;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+.content{
+    width: 70vw;
+    height: 80vh;
+    padding-top: 3vh;
 }
 .member_search{
-    position: absolute;
-    margin-top: 44px;
-    margin-left: 104px;
+    width: 300px;
+    height: 40px;
     display: flex;
     align-items: center;
     background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -28,85 +32,95 @@ body{
     border-radius: 5px
 }
 .search_input{
-    width: 357px;
-    height: 58px;
+    width: 250px;
+    height: 30px;
     border: none;
 }
 .search_img{
-    width: 58px;
-    height: 58px;
+    width: 40px;
+    height: 40px;
     background-color: white;
     border: none;
 }
 .search_img img{
     width: 32px;
     height: 32px;
-    
-    
 }
-
+.drop{
+    width: 70vw;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .dropdown{
-    width: 100px;
-    height: 19px;
-    position: absolute;
-    top: 137px;
-    left: 119px;
-    display: inline-block;
+    width: 150px;
+    height: 40px;
 }
 
 .dropbtn{
-
-    width: 100px;
-    height: 19px;
+    width: 150px;
+    height: 20px;
     background: none;
     border: none;
     font-size: 16px;
-
     display: flex;
     align-items: center;
-
 }
-
 .dropdown-content{
     display : none;
-    position : absolute;
     z-index : 1;
     background-color: white;
     width: 100px;
     text-align: left;
-  }
-
-  .dropdown-content p{
+}
+.dropdown-content p{
     display : block;
-  }
-  .dropdown-content p:hover{
-      background-color: #007200;
-  }
-  .dropdown:hover .dropdown-content {
+}
+.dropdown-content p:hover{
+    background-color: #007200;
+}
+.dropdown:hover .dropdown-content {
     display: block;
-  }
+}
 .down_icon img{
     width: 26px;
     height: 26px;
-
-
 }
 .member_add{
     width: 28px;
     height: 28px;
     border: 2px solid #707070;
     background: none;
-
     align-items: center;
-    position: absolute;
-    top: 137px;
-    left: 1164px;
-
-
 }
 .member_add img{
     width: 19px;
     height: 19px;
     padding-top: 3px;
-
+}
+.mainBox{
+    width: 70vw;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    align-items: center;
+}
+.lead{
+    width: 67vw;
+    height: 8vh;
+    display: flex;
+    border-bottom: 1px solid #70707029;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.line{
+    width: 67vw;
+    height: 8vh;
+    display: flex;
+    border-bottom: 1px solid #70707029;
+    align-items: center;
+    justify-content: space-around;
 }

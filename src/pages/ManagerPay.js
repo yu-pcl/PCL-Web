@@ -37,9 +37,9 @@ const ManagerPay = () => {
             setHealth(res.money_health);
             setEmployment(res.money_employ);
             setOccupational(res.money_accident);
-            setPayTotal(basicPay+deliveryFee);
-            setInsuranceTotal(pension+health+employment+occupational);
-            setTotal(basicPay+deliveryFee-(pension+health+employment+occupational));
+            setPayTotal(res.money_base+res.money_parcel);
+            setInsuranceTotal(res.money_pension+res.money_health+res.money_employ+res.money_accident);
+            setTotal(res.money_base+res.money_parcel-(res.money_pension+res.money_health+res.money_employ+res.money_accident));
         });              
     }, []);
 
