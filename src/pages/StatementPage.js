@@ -135,7 +135,6 @@ const Box = styled.div`
                 justify-content: flex-start;
             }
         }
-
     }
     
     .boxBottom{

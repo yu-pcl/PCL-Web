@@ -7,14 +7,13 @@ import axios from 'axios';
 import {useDispatch} from 'react-redux';
 import { MEMBER_LIST } from './user_type';
 import MemberList from './MemberList';
-import Pagination from './Pagination';
+// import Pagination from './Pagination';
 
 const MemberManage = () => {
 
   const [member_list, setMemberList]=useState([]);
   const [count_per_page,setCountPerPage]=useState(10);//페이지당출력할객체수
   const [current_page,setCurrentPage]=useState(0);//현재페이지번호(0부터시작)
- 
 
     axios.post('http://acslab.toygoon.com:8000/api/userlist/',{
       count_per_page:count_per_page,
