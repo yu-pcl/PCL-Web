@@ -12,6 +12,7 @@ import TestPage from "./pages/TestPage";
 import InvoicePage from './pages/InvoicePage';
 import InsightPage from './pages/Insightpage';
 import Expectpage from './pages/Expectpage';
+import StatementPage from './pages/StatementPage';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/invoice" element={<InvoicePage/>}/>
           <Route path="/insight" element={<InsightPage/>}/>
           <Route path="/expect" element={<Expectpage/>}/>
+          <Route path="/statement" element={<StatementPage />}/>
 
           <Route path="/test" element={<TestPage/>}/>
 

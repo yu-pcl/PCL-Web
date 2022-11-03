@@ -3,8 +3,9 @@ import logo from '../assets/logo.png';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
+
 const Header = () => { 
-    
+    if (window.location.pathname === '/statement') return null;
     return (
         <HeaderContainer>
             <NavLink 
