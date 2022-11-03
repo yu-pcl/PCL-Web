@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useState} from 'react';
 import {useDispatch} from 'react-redux';
 import axios from 'axios';
-import { LOGIN_USER } from './LoginType';
+import { LOGIN_USER } from './user_type';
 import { json, Navigate } from 'react-router-dom';
 import { setCookie } from './Cooke';
 import { getCookie } from './Cooke';
