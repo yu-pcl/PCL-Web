@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../styles/MemberAdd.css';
 import logo from '../assets/logo.png';
 import memberpic from '../assets/member_pic.jpeg';
@@ -12,9 +12,15 @@ const MemberAdd = () => {
     const [worker_id, setworker_id] = useState("");
     const [fullname, setfullname] = useState("");
     const [password, setpassword] = useState("");
+    const [phone, setphone] = useState("");
+    const [email, setemail] = useState("");
     const [is_superuser, setis_superuser] = useState(false);
     const dispatch = useDispatch()
 
+
+    const del_click =(e)=>{
+        axios.get(`http://acslab.toygoon.com:8000/api/deluser/${worker_id}`);
+    };
 
     function registerWorker(dataToSubmit){
         const request = axios.post("http://acslab.toygoon.com:8000/api/register/",dataToSubmit)
@@ -45,6 +51,12 @@ const MemberAdd = () => {
     const onPWHandler=(event)=>{
         setpassword(event.currentTarget.value);
     }
+    const onPhoneHandler=(event)=>{
+        setphone(event.currentTarget.value);
+    }
+    const onEmailHandler=(event)=>{
+        setemail(event.currentTarget.value);
+    }
     const onSuperuserHandler=(event)=>{
         setis_superuser(!is_superuser);
     }
@@ -52,14 +64,15 @@ const MemberAdd = () => {
     return (
         <div className='wwrap'>
             <div className='up'>
-                <span className='member_pic'><img src={memberpic} /></span>
                 <span className='logogo'><img src={logo} /></span>
             </div>
             <form className='member_input' onSubmit={onSubmitHandler}>
                 <div className='inputs'>
+                    <input placeholder='이름' type="string" value={fullname} onChange={onFullnameHandler}/>
                     <input placeholder='사원번호' type="string" value={worker_id} onChange={onIdHandler}/>
                     <input placeholder='비밀번호' type="string" value={password} onChange={onPWHandler}/>
-                    <input placeholder='실명' type="string" value={fullname} onChange={onFullnameHandler}/>
+                    <input placeholder='전화번호' type="string"value={phone} onChange={onPhoneHandler}/>
+                    <input placeholder='이메일' type="string"value={email} onChange={onEmailHandler}/>
                     <span>
                         <input type="radio" checked={is_superuser}  onChange={onSuperuserHandler}/>
                         <p>관리자</p>
@@ -68,7 +81,7 @@ const MemberAdd = () => {
                 </div>
                 <span className='member_btn'>
                     <button type='submit'formAction='' >등록</button>
-                    <button>삭제</button>
+                    <button type='submit' onClick={del_click}>삭제</button>
                 </span>
 
             </form>

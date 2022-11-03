@@ -8,15 +8,8 @@
 .up{
     width: 35vw;
     height: 15vh;
-    display: flex;
     align-items: center;
     padding-top: 5vh;
-}
-.member_pic img{
-    width: 110px;
-    height: 110px;
-    border: 2px solid #007200;
-    border-radius: 59px;
 }
 .logogo img{
     width: 250px;

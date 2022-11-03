@@ -116,7 +116,7 @@ body{
     align-items: center;
     justify-content: space-evenly;
 }
-.line{
+.list{
     width: 67vw;
     height: 8vh;
     display: flex;
