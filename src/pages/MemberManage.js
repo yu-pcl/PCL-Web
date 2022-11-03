@@ -10,7 +10,7 @@ import { MEMBER_LIST } from './user_type';
 const MemberManage = () => {
 
   const [member_list, setMemberList] = useState([]);
-  const [count_per_page, setCountPerPage] = useState(11);//페이지당출력할객체수
+  const [count_per_page, setCountPerPage] = useState(20);//페이지당출력할객체수
   const [current_page, setCurrentPage] = useState(0);//현재페이지번호(0부터시작)
 
 
@@ -47,19 +47,21 @@ const MemberManage = () => {
 
         <div className='mainBox'>
           <div className='lead'>
-            <p></p>
-            <p>사진</p>
+            <p>번호</p>
             <p>이름</p>
             <p>사원번호</p>
             <p>전화번호</p>
             <p>이메일</p>
           </div>
-          <div className="list">
+          <div>
             {member_list.map(function (item, i) {
               return (
-                <div key={i}>
+                <div key={i} className="list">
+                  <span>1</span>
                   <span>{item.fullname}</span>
                   <span>{item.worker_id}</span>
+                  <span>{item.phone}</span>
+                  <span>{item.email}</span>
                 </div>
               )
             })}
@@ -69,5 +71,7 @@ const MemberManage = () => {
     </div>
   );
 };
+
+
 
 export default MemberManage;
