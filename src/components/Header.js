@@ -2,10 +2,12 @@ import React from 'react';
 import logo from '../assets/logo.png';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-
+import { useState, useEffect } from 'react';
+import { getCookie } from '../pages/Cooke';   
 
 const Header = () => { 
     if (window.location.pathname === '/statement') return null;
+
     return (
         <HeaderContainer>
             <NavLink 
@@ -19,67 +21,67 @@ const Header = () => {
                 />
             </NavLink>
             
-            {/* 로그인 전  */}
-            {/* <NavLink
+                
+                {/* <NavLink
                 className='login'
                 to= "/signin"
-            >
-                <h3>
-                    로그인
-                </h3>   
-            </NavLink> */}
-            
-            {/* 로그인 후 */}
-            <div className='navs'>
-                <NavLink
-                    // 관리자용
-                    // className='manager'
-                    // to= "/manager"
+                >
+                    <h3>
+                        로그인
+                    </h3>   
+                </NavLink> */}
+                
+                <div className='navs'>
+                    <NavLink
+                        // 관리자용
+                        // className='manager'
+                        // to= "/manager"
 
-                    // 직원용
-                    className='employee'
-                    to= "/employee"
-                >
-                    <h4>
-                        급여 관리
-                    </h4>   
-                </NavLink>
-                <NavLink
-                    className='login'
-                    to= "/invoice"
-                >
-                    <h4>
-                        운송장관리
-                    </h4>   
-                </NavLink>
-                <NavLink
-                    className='login'
-                    to= "/insight"
-                >
-                    <h4>
-                        인사이트
-                    </h4>   
-                </NavLink>
-                <NavLink
-                    className='manage'
-                    to= "/manage"
-                >
-                    <h4>
-                        직원관리
-                    </h4>   
-                </NavLink>
-                <NavLink
-                    className='login'
-                    to= "/expect"
-                >
-                    <h4>
-                        업무량예측
-                    </h4>   
-                </NavLink>
-                <h4 className='name'>
-                    name 님
-                </h4>
-            </div>
+                        // 직원용
+                        className='employee'
+                        to= "/employee"
+                    >
+                        <h4>
+                            급여 관리
+                        </h4>   
+                    </NavLink>
+                    <NavLink
+                        className='login'
+                        to= "/invoice"
+                    >
+                        <h4>
+                            운송장관리
+                        </h4>   
+                    </NavLink>
+                    <NavLink
+                        className='login'
+                        to= "/insight"
+                    >
+                        <h4>
+                            인사이트
+                        </h4>   
+                    </NavLink>
+                    <NavLink
+                        className='manage'
+                        to= "/manage"
+                    >
+                        <h4>
+                            직원관리
+                        </h4>   
+                    </NavLink>
+                    <NavLink
+                        className='login'
+                        to= "/expect"
+                    >
+                        <h4>
+                            업무량예측
+                        </h4>   
+                    </NavLink>
+                    
+                    <h4 className='name'>
+                        name님
+                    </h4>
+                </div>
         </HeaderContainer>
     );
 };

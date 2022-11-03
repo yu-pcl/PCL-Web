@@ -6,33 +6,38 @@ import axios from 'axios';
 import { LOGIN_USER } from './user_type';
 import { json, Navigate } from 'react-router-dom';
 import { setCookie } from './Cooke';
-import { getCookie } from './Cooke';
+import { getCookie } from './Cooke';   
+import { useNavigate } from 'react-router-dom';
+
+
 
 const LoginPage = () => {
 
     const [worker_id,Setworker_id]=useState("");
     const [password,Setpassword]=useState("");
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    
     //로그인 post
     function loginUser(dataToSubmit){
         const request = axios.post('http://acslab.toygoon.com:8000/api/login/',dataToSubmit)
             .then(function(response){
                 console.log(response.data);
 
-                //토큰 쿠키 저장
                 const access_token = response.data.token;
                 setCookie("access_token",`${access_token}`);
                 //토큰 반환
                 axios.defaults.headers.common['Authorization']=`Bearer ${access_token}`;
+                navigate("/");
+            })
+            .catch(function(error) {
+                alert(error.request.responseText)
             });
-
-            return{
-                type:LOGIN_USER,
-                payload:request
-            }
-            //+로그인 성공시 메인 페이지 이동
+        return{
+            type:LOGIN_USER,
+            payload:request
+        }
+            
     }
     
     
@@ -41,7 +46,7 @@ const LoginPage = () => {
     }
     const onPasswordHandler=(event)=>{
         Setpassword(event.currentTarget.value);
-    }
+    } 
     const onSubmitHandler=(event)=>{
         event.preventDefault();
         let body = {

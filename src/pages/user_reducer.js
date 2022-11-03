@@ -3,7 +3,7 @@ import {
 } from '../_actions/types'
 
 export default function (state = {}, action) {
-    switch(action.tpye) {
+    switch(action.type) {
         case LOGIN_USER:
             return { ...state, loginSuccess: action.payload }
             break;
