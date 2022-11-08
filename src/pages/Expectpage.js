@@ -19,8 +19,7 @@ const Expectpage = () => {
     const [size1,setSize1] = useState(dummy.size1);
     const [size2,setSize2] = useState(dummy.size2);
     const [size3,setSize3] = useState(dummy.size3);
-    
-    
+
     return (
         <Container>
             <Box>

@@ -3,20 +3,24 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
 
-const dummy = {
-    "size1": 112,
-    "size2": 578,
-    "size3": 348,
-    "monthlySales" : 263000000,
-    "dailySales" : 3700000
-};
-
 const Insight = () => {
-    const [size1, setSize1] = useState(dummy.size1);
-    const [size2, setSize2] = useState(dummy.size2);
-    const [size3, setSize3] = useState(dummy.size3);
-    const [monthlySales, setMonthlySales] = useState(dummy.monthlySales);
-    const [dailySales, setDailySales] = useState(dummy.dailySales);
+    const [size1, setSize1] = useState([]);
+    const [size2, setSize2] = useState([]);
+    const [size3, setSize3] = useState([]);
+    const [monthlySales, setMonthlySales] = useState([]);
+    const [dailySales, setDailySales] = useState([]);
+
+    useEffect(()=> {
+        fetch('http://acslab.toygoon.com:8000/api/insight/', {
+            method : "GET"   
+        }).then(res=>res.json()).then(res=>{
+            setSize1(res.size_list.size_one);
+            setSize2(res.size_list.size_two);
+            setSize3(res.size_list.size_three);
+            setMonthlySales(res.sales_month);
+            setDailySales(res.sales_today);   
+        });              
+    }, []);
 
     return (
         <Container>
