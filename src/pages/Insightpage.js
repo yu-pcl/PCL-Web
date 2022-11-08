@@ -12,11 +12,11 @@ const dummy = {
 };
 
 const Insight = () => {
-    const [size1, SetSize1] = useState(dummy.size1);
-    const [size2, SetSize2] = useState(dummy.size2);
-    const [size3, SetSize3] = useState(dummy.size3);
-    const [monthlySales, SetMonthlySales] = useState(dummy.monthlySales);
-    const [dailySales, SetDailySales] = useState(dummy.dailySales);
+    const [size1, setSize1] = useState(dummy.size1);
+    const [size2, setSize2] = useState(dummy.size2);
+    const [size3, setSize3] = useState(dummy.size3);
+    const [monthlySales, setMonthlySales] = useState(dummy.monthlySales);
+    const [dailySales, setDailySales] = useState(dummy.dailySales);
 
     return (
         <Container>

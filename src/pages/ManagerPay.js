@@ -16,31 +16,6 @@ const ManagerPay = () => {
     const [number, SetNumber] = useState(dummy.number);
     const [year, setYear] = useState(dummy.year);
     const [month, setMonth] = useState(dummy.month);
-    const [basicPay, setBasicPay] = useState([]);
-    const [deliveryFee, setDeliveryFee] = useState([]);
-    const [pension, setPension] = useState([]);
-    const [health, setHealth] = useState([]);
-    const [employment, setEmployment] = useState([]);
-    const [occupational, setOccupational] = useState([]);
-    const [payTotal, setPayTotal] = useState([]);
-    const [insuranceTotal, setInsuranceTotal] = useState([]);
-    const [total, setTotal] = useState([]);
-
-    useEffect(()=> {
-        fetch('http://acslab.toygoon.com:8000/api/employ/1000', {
-            method : "GET"   
-        }).then(res=>res.json()).then(res=>{
-            setBasicPay(res.money_base);
-            setDeliveryFee(res.money_parcel);
-            setPension(res.money_pension);
-            setHealth(res.money_health);
-            setEmployment(res.money_employ);
-            setOccupational(res.money_accident);
-            setPayTotal(res.money_base+res.money_parcel);
-            setInsuranceTotal(res.money_pension+res.money_health+res.money_employ+res.money_accident);
-            setTotal(res.money_base+res.money_parcel-(res.money_pension+res.money_health+res.money_employ+res.money_accident));
-        });              
-    }, []);
 
     return (
         <Container>
