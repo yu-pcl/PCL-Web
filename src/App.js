@@ -32,9 +32,7 @@ function App() {
           <Route path="/insight" element={<InsightPage/>}/>
           <Route path="/expect" element={<Expectpage/>}/>
           <Route path="/statement" element={<StatementPage />}/>
-
           <Route path="/test" element={<TestPage/>}/>
-
           <Route path="*" element={<NotFoundpage/>}/>
         </Routes>
       </BrowserRouter>
