@@ -26,11 +26,11 @@ const MemberAdd = () => {
         const request = axios.post("http://acslab.toygoon.com:8000/api/register/",dataToSubmit)
             .then(function(response){
                 console.log(response.data);
+                if(response.data.token!==undefined){
+                    alert('직원 등록 성공');
+                    document.location.href = '/manage';
+                }
             });
-            return{
-                type: RESISTER_USER,
-                payload:request
-            }
     }
     const onSubmitHandler=(event)=>{
         event.preventDefault();
