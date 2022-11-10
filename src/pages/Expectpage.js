@@ -1,24 +1,41 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
 import boxIcon from '../assets/boxIcon.png';
 import truckIcon1 from '../assets/truckIcon1.png';
 
-const dummy ={
-    "wish": 10000000,
-    "freightCost": 5000000,
-    "size1" : 50,
-    "size2" : 80,
-    "size3" : 20
-}
-
 const Expectpage = () => {
-    const [wish, setWish] = useState(dummy.wish);
-    const [freightCost, setFreightCost] = useState(dummy.freightCost);
-    const [difference, setDifference] = useState(dummy.wish-dummy.freightCost);
-    const [size1,setSize1] = useState(dummy.size1);
-    const [size2,setSize2] = useState(dummy.size2);
-    const [size3,setSize3] = useState(dummy.size3);
+    const [wish, setWish] = useState([]);
+    const [freightCost, setFreightCost] = useState([]);
+    const [difference, setDifference] = useState([]);
+    const [size1,setSize1] = useState([]);
+    const [size2,setSize2] = useState([]);
+    const [size3,setSize3] = useState([]);
+
+    function onSubmitHandler(dataToSubmit){
+        axios.post("http://acslab.toygoon.com:8000/api/regression/",
+            {
+                worker_id : 1000,
+                wish : wish
+            })
+            .then(function(response){
+                console.log(response.data);
+                setFreightCost(response.salary)
+                setDifference(response.wish)
+                setSize1(response.size_one)
+                setSize2(response.size_two)
+                setSize3(response.size_three)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    const onWishHandler=(event)=>{
+        setWish(event.currentTarget.value);
+    }
 
     return (
         <Container>
@@ -26,10 +43,12 @@ const Expectpage = () => {
                 <div className='boxTop'>
                     <div className='topContent'>
                         <h2>목표 급여</h2>
-                        <div className='wish'>
-                            <h1>{wish.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h1>
-                            <h2>원</h2>
-                        </div>
+                        <form onSubmit={onSubmitHandler(wish)}>
+                            <div className='wish'>
+                                <input placeholder='목표' type="string" value={wish} onChange={onWishHandler}/>
+                                <button type='submit' formAction=''><h2>입력</h2></button>
+                            </div>
+                        </form>
                         <img src={truckIcon1}/>
                     </div>
                     <div className='line'></div>
@@ -119,10 +138,14 @@ const Box = styled.div`
                 align-items: center;
                 justify-content: space-evenly;
     
-                h1{
+                input{
                     background: #FFFFFF96 0% 0% no-repeat padding-box;
                     border-radius: 38px;
                     padding: 13px;
+                }
+                
+                button{
+                    
                 }
             }
     
