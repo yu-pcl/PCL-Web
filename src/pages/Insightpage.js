@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
 import FinanceGraph from './FinanceGraph';
+import EmployeeGraph from './EmployeeGraph';
 const Insight = () => {
     const [size1, setSize1] = useState([]);
     const [size2, setSize2] = useState([]);
@@ -33,7 +34,10 @@ const Insight = () => {
                     <div className='box left'>재정현황 그래프
                         <FinanceGraph/>
                     </div>
-                    <div className='box right'>직원 수 그래프</div>
+                    <div className='box right'>직원 수 그래프
+                    <EmployeeGraph/>
+
+                    </div>
                 </MiddleContent>
                 <BottomContent>
                     <div className='box left'>
