@@ -8,6 +8,7 @@ import { json, Navigate } from 'react-router-dom';
 import { setCookie } from './Cooke';
 import { getCookie } from './Cooke';   
 import { useNavigate } from 'react-router-dom';
+import login_image from '../assets/login_image.jpeg';
 
 
 
@@ -58,7 +59,9 @@ const LoginPage = () => {
 
 return (
     <Container>
-        <LeftContent></LeftContent>
+        <LeftContent>
+            <img src={login_image} className="login_image"></img>
+        </LeftContent>
         <RightContent>
             <form onSubmit={onSubmitHandler}>
                 <h1>로그인</h1>
@@ -94,11 +97,22 @@ align-items: center;
 const LeftContent = styled.div`
 width : 55%;
 height : 90vh;
-background-color : #D1CFC9;
+background-color : #e3e2e1;
+position: relative;
+overflow:hidden;
+
+.login_image{
+    position: absolute;
+    width: 130%;
+    height:80%;
+    left:0%;
+    top:10%;
+    transform: scaleX(-1);
+}
 `;
 const RightContent = styled.div`
 width : 45%;
-height : 90vh;
+height : 90vh;    
 display : flex;
 flex-direction: column;
 justify-content: space-evenly;

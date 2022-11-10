@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
 import FinanceGraph from './FinanceGraph';
 import EmployeeGraph from './EmployeeGraph';
+import insight_image from '../assets/insight_image.jpeg';
+
 const Insight = () => {
     const [size1, setSize1] = useState([]);
     const [size2, setSize2] = useState([]);
@@ -28,7 +30,9 @@ const Insight = () => {
         <Container>
             <Content>
                 <TopContent>
-                    <div className='box'>일러스트</div>
+                    <div className='box'>
+                        <img src={insight_image} className="insight_image"/>
+                    </div>
                 </TopContent>
                 <MiddleContent>
                     <div className='box left'>재정현황 그래프
@@ -126,7 +130,10 @@ const Content = styled.div`
     .box{
         background: #FFFFFF 0% 0% no-repeat padding-box;
         box-shadow: 0px 3px 6px #00000029;
+
     }
+    
+
 `
 
 const TopContent = styled.div`
@@ -136,8 +143,21 @@ const TopContent = styled.div`
 
     .box{
         width: 60vw;
+        overflow: hidden;
+        position: relative;
     }
+    .insight_image{
+        position: absolute;
+        width: 70%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        
+}
 `;
+
+
+
 
 const MiddleContent = styled.div`
     width: 60vw;
