@@ -21,6 +21,7 @@ body{
     width: 70vw;
     height: 80vh;
     padding-top: 3vh;
+    position: relative;
 }
 .member_search{
     width: 300px;
@@ -101,7 +102,7 @@ body{
 }
 .mainBox{
     width: 70vw;
-    height: 70vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -123,4 +124,30 @@ body{
     border-bottom: 1px solid #70707029;
     align-items: center;
     justify-content: space-around;
+}
+.page_selector{
+    position: absolute;
+    width: 40vw;
+    height: 5vh;
+    flex-direction: column;
+    align-items: center; 
+    margin-top: 3vh;
+    left: 15vw;
+    padding-top: 1vh;
+}
+.page_text{
+    display: flex;
+    margin-left: 5vw;
+    flex-direction: row;
+    align-items: center; 
+    text-align: center;
+}
+.page_selector button{
+    width: 3vw;
+    height: 1.5vw;
+    padding-top: 0.5vw;
+    margin-right: 1vw;
+    background-color: khaki;
+    font-size: 21px;
+    text-align: center;
 }

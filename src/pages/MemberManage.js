@@ -10,8 +10,8 @@ import { MEMBER_LIST } from './user_type';
 const MemberManage = () => {
 
   const [member_list, setMemberList] = useState([]);
-  const [count_per_page, setCountPerPage] = useState(20);//페이지당출력할객체수
-  const [current_page, setCurrentPage] = useState(0);//현재페이지번호(0부터시작)
+  const [count_per_page, setCountPerPage] = useState(10);//페이지당출력할객체수
+  const [current_page, setCurrentPage] = useState(1);//현재페이지번호(0부터시작)
 
   axios.post('http://acslab.toygoon.com:8000/api/userlist/', {
     count_per_page: count_per_page,
@@ -20,6 +20,9 @@ const MemberManage = () => {
     setMemberList(res.data);
   });
 
+  const onClickHandler=(event)=>{
+    setCurrentPage(event.currentTarget.value);
+} 
   function addClick(e) {
     window.location.replace("/add")
   }
@@ -65,6 +68,18 @@ const MemberManage = () => {
               )
             })}
           </div>
+        </div>
+        <div className='page_selector'>
+            <div className='page_text'>
+              <button onClick={onClickHandler} value={1}>1</button>
+              <button onClick={onClickHandler} value={2}>2</button>
+
+              <button onClick={onClickHandler} value={3}>3</button>
+              <button onClick={onClickHandler} value={4}>4</button>
+
+              <button onClick={onClickHandler} value={5}>5</button>
+              <button onClick={onClickHandler} value={6}>6</button>
+            </div>
         </div>
       </div>
     </div>
