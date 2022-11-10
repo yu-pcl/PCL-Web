@@ -1,20 +1,23 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
 import boxIcon from '../assets/boxIcon.png';
 import truckIcon1 from '../assets/truckIcon1.png';
 
 const Expectpage = () => {
     const [wish, setWish] = useState([]);
-    const [freightCost, setFreightCost] = useState([]);
+    const [salary, setSalary] = useState([]);
     const [difference, setDifference] = useState([]);
     const [size1,setSize1] = useState([]);
     const [size2,setSize2] = useState([]);
     const [size3,setSize3] = useState([]);
 
-    function onSubmitHandler(dataToSubmit){
+    const onWishHandler= useCallback(e=>{
+        setWish(e.target.value);
+        console.log(wish);
+    }, []);
+
+    const handleClickButton = useCallback(() => {
         axios.post("http://acslab.toygoon.com:8000/api/regression/",
             {
                 worker_id : 1000,
@@ -22,20 +25,16 @@ const Expectpage = () => {
             })
             .then(function(response){
                 console.log(response.data);
-                setFreightCost(response.salary)
-                setDifference(response.wish)
-                setSize1(response.size_one)
-                setSize2(response.size_two)
-                setSize3(response.size_three)
+                setSalary(response.data.salary);
+                setDifference(wish-response.data.salary);
+                setSize1(response.data.size_one);
+                setSize2(response.data.size_two);
+                setSize3(response.data.size_three);
             })
             .catch(function (error) {
                 console.log(error);
             });
-    }
-
-    const onWishHandler=(event)=>{
-        setWish(event.currentTarget.value);
-    }
+    }, [wish]);
 
     return (
         <Container>
@@ -43,12 +42,10 @@ const Expectpage = () => {
                 <div className='boxTop'>
                     <div className='topContent'>
                         <h2>목표 급여</h2>
-                        <form onSubmit={onSubmitHandler(wish)}>
                             <div className='wish'>
                                 <input placeholder='목표' type="string" value={wish} onChange={onWishHandler}/>
-                                <button type='submit' formAction=''><h2>입력</h2></button>
+                                <button onClick={handleClickButton}><h2>입력</h2></button>
                             </div>
-                        </form>
                         <img src={truckIcon1}/>
                     </div>
                     <div className='line'></div>
@@ -59,14 +56,14 @@ const Expectpage = () => {
                             <div className='bar'></div>
                             <h2>누적 운임비</h2>
                         </div>
-                        <h2 className='money'>{freightCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h2>
+                        <h2 className='money'>{salary}</h2>
                     </div>
                     <div className='table'>
                         <div className='title'>
                             <div className='bar'></div>
                             <h2>잔여 금액</h2>
                         </div>
-                        <h2 className='money'>{difference.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h2>
+                        <h2 className='money'>{difference}</h2>
                     </div>
                     <div className='predict'>
                         <div className='bar'></div>
@@ -145,7 +142,7 @@ const Box = styled.div`
                 }
                 
                 button{
-                    
+                    background: #FFFFFF96 0% 0% no-repeat padding-box;
                 }
             }
     
