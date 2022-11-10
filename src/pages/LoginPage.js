@@ -11,37 +11,38 @@ import { useNavigate } from 'react-router-dom';
 import login_image from '../assets/login_image.jpeg';
 
 
-
 const LoginPage = () => {
 
     const [worker_id,Setworker_id]=useState("");
     const [password,Setpassword]=useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+  
     //로그인 post
     function loginUser(dataToSubmit){
         const request = axios.post('http://acslab.toygoon.com:8000/api/login/',dataToSubmit)
             .then(function(response){
-                console.log(response.data);
-
+                const worker_id=(response.data.worker_id);
                 const access_token = response.data.token;
+                const fullname = response.data.fullname;
+               
                 setCookie("access_token",`${access_token}`);
+                setCookie("worker_id",`${worker_id}`)
+                setCookie("fullname",`${fullname}`)
                 //토큰 반환
-                axios.defaults.headers.common['Authorization']=`Bearer ${access_token}`;
-                navigate("/");
+                axios.defaults.headers.common['Authorization']=`Token ${access_token}`;
+                if(response.data.token!==undefined){
+                    document.location.href = '/';
+                }
             })
             .catch(function(error) {
                 alert(error.request.responseText)
             });
-        return{
-            type:LOGIN_USER,
-            payload:request
+            return{
+                type:LOGIN_USER,
+                payload:request
+            }
         }
-            
-    }
-    
-    
     const onIdHandler=(event)=>{
         Setworker_id(event.currentTarget.value);
     }
@@ -55,8 +56,8 @@ const LoginPage = () => {
             password:password,
         }
         dispatch(loginUser(body));
-    }
 
+    }
 return (
     <Container>
         <LeftContent>
@@ -79,14 +80,13 @@ return (
                     onChange={onPasswordHandler}
                 />
                 </div>
-                <input type='submit' value="로그인" formAction=''/>
+                <input type='submit' value="로그인" formAction='' />
             </form>
             </RightContent>
         </Container>
-        
     );
-};
 
+};
 const Container = styled.div`
 width : 100vw;
 height : 90vh;

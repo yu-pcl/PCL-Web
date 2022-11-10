@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import { getCookie, setCookie } from './Cooke';
 
 const StatementPage = () => {
+    
+    let worker_id = getCookie("worker_id");
     const [basicPay, setBasicPay] = useState([]);
     const [deliveryFee, setDeliveryFee] = useState([]);
     const [pension, setPension] = useState([]);
@@ -14,7 +17,7 @@ const StatementPage = () => {
     const [total, setTotal] = useState([]);
 
     useEffect(()=> {
-        fetch('http://acslab.toygoon.com:8000/api/employ/1000', {
+        fetch(`http://acslab.toygoon.com:8000/api/employ/${worker_id}`, {
             method : "GET"   
         }).then(res=>res.json()).then(res=>{
             setBasicPay(res.money_base);

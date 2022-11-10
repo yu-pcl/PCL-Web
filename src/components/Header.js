@@ -8,6 +8,8 @@ import { getCookie } from '../pages/Cooke';
 const Header = () => { 
     if (window.location.pathname === '/statement') return null;
 
+    let fullname = getCookie("fullname");
+    console.log(fullname);
     return (
         <HeaderContainer>
             <NavLink 
@@ -79,7 +81,7 @@ const Header = () => {
                     </NavLink>
                     
                     <h4 className='name'>
-                        name님
+                        {fullname}님
                     </h4>
                 </div>
         </HeaderContainer>
