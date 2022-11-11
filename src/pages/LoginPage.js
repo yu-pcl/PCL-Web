@@ -6,7 +6,6 @@ import axios from 'axios';
 import { LOGIN_USER } from './user_type';
 import { json, Navigate } from 'react-router-dom';
 import { setCookie } from './Cooke';
-import { getCookie } from './Cooke';   
 import { useNavigate } from 'react-router-dom';
 import login_image from '../assets/login_image.jpeg';
 
@@ -34,6 +33,14 @@ const LoginPage = () => {
                 if(response.data.token!==undefined){
                     document.location.href = '/';
                 }
+                //관리자용 급여 관리 페이지로 전환
+                if(response.data.worker_id=="1000"){
+                    document.location.href = '/manager';
+                }
+                if(response.data.worker_id!=="1000"){
+                    document.location.href = '/employee';
+                }
+
             })
             .catch(function(error) {
                 alert(error.request.responseText)
