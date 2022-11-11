@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { getCookie, setCookie } from './Cooke';
 import { useState, useEffect, useCallback } from 'react';
 import arrow_left from '../assets/arrow_left.png';
 import arrow_right from '../assets/arrow_right.png';
@@ -11,6 +12,7 @@ const dummy = {
 };
 
 const StatementPage = () => {
+    let worker_id = getCookie("worker_id");
     const [name, SetName] = useState(dummy.name);
     const [number, SetNumber] = useState(dummy.number);
     const [year, setYear] = useState(2022);
@@ -49,7 +51,7 @@ const StatementPage = () => {
     }, []);
 
     useEffect(()=> {
-        fetch('http://acslab.toygoon.com:8000/api/employ/1000', {
+        fetch(`http://acslab.toygoon.com:8000/api/employ/${worker_id}`, {
             method : "GET"   
         }).then(res=>res.json()).then(res=>{
             setBasicPay(res.money_base);

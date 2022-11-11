@@ -4,86 +4,24 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { getCookie } from '../pages/Cooke';   
+import axios from 'axios';
+import { removeCookie } from '../pages/Cooke'; 
+import ManagerHeader from '../components/ManagerHeader';  
+import EmployeeHeader from '../components/EmployeeHeader';  
 
-const Header = () => { 
+const Header = (props) => { 
     if (window.location.pathname === '/statement') return null;
 
-    return (
-        <HeaderContainer>
-            <NavLink 
-                className='logo'
-                to= "/"
-            >
-                <img
-                    className='img' 
-                    src={logo}
-                    alt="logo"
-                />
-            </NavLink>
-            
-                
-                {/* <NavLink
-                className='login'
-                to= "/signin"
-                >
-                    <h3>
-                        로그인
-                    </h3>   
-                </NavLink> */}
-                
-                <div className='navs'>
-                    <NavLink
-                        // 관리자용
-                        // className='manager'
-                        // to= "/manager"
+    let fullname = getCookie("fullname");
+    let worker_id = getCookie("worker_id")
 
-                        // 직원용
-                        className='employee'
-                        to= "/employee"
-                    >
-                        <h4>
-                            급여 관리
-                        </h4>   
-                    </NavLink>
-                    <NavLink
-                        className='login'
-                        to= "/invoice"
-                    >
-                        <h4>
-                            운송장관리
-                        </h4>   
-                    </NavLink>
-                    <NavLink
-                        className='login'
-                        to= "/insight"
-                    >
-                        <h4>
-                            인사이트
-                        </h4>   
-                    </NavLink>
-                    <NavLink
-                        className='manage'
-                        to= "/manage"
-                    >
-                        <h4>
-                            직원관리
-                        </h4>   
-                    </NavLink>
-                    <NavLink
-                        className='login'
-                        to= "/expect"
-                    >
-                        <h4>
-                            업무량예측
-                        </h4>   
-                    </NavLink>
-                    
-                    <h4 className='name'>
-                        name님
-                    </h4>
-                </div>
-        </HeaderContainer>
-    );
+    if(worker_id=="1000"){
+       return <ManagerHeader/>;
+    }
+    if(worker_id!=="1000"){
+        return <EmployeeHeader/>;
+    }
+    
 };
 
 export default Header;

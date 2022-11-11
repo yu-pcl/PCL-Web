@@ -39,8 +39,7 @@ const Insight = () => {
                         <FinanceGraph/>
                     </div>
                     <div className='box right'>직원 수 그래프
-                    <EmployeeGraph/>
-
+                        <EmployeeGraph/>
                     </div>
                 </MiddleContent>
                 <BottomContent>
@@ -152,7 +151,7 @@ const TopContent = styled.div`
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        
+    }
 }
 `;
 

@@ -2,8 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import StatementPage from './StatementPage';
+import { getCookie } from './Cooke';
 
 
+let fullname=getCookie("fullname");
+let worker_id=getCookie("worker_id");
+
+const dummy = {
+    "number" : worker_id,
+    "name" :fullname,
+    "year" : 2022,
+    "month" : 10,
+};
 
 const EmployeePay = () => {
 
