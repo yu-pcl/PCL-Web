@@ -78,7 +78,6 @@ const MemberManage = () => {
               <button onClick={onClickHandler} value={4}>4</button>
 
               <button onClick={onClickHandler} value={5}>5</button>
-              <button onClick={onClickHandler} value={6}>6</button>
             </div>
         </div>
       </div>
