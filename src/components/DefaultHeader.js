@@ -10,21 +10,21 @@ import Dropdown from './Dropdown';
         let worker_id = getCookie("worker_id")
             return (
                 <HeaderContainer>
-                    <NavLink 
-                        className='logo'
-                        to= "/"
-                    >
+                    <div className='logo'>
                         <img
                             className='img' 
                             src={logo}
                             alt="logo"
                         />
-                    </NavLink>
-                    <div>
+                    </div>
+                    <NavLink
+                        className='login'
+                        to="/signin"
+                        >
                             <h4 className='name'>
                                 로그인
                             </h4>
-                        </div>
+                    </NavLink>
                 </HeaderContainer>
             );
     }

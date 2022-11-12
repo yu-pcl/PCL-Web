@@ -15,16 +15,13 @@ import Dropdown from './Dropdown';
         
         return(
             <HeaderContainer>
-            <NavLink 
-                className='logo'
-                to= "/"
-            >
-                <img
-                    className='img' 
-                    src={logo}
-                    alt="logo"
-                />
-            </NavLink>
+                <div className='logo'>
+                    <img
+                        className='img' 
+                        src={logo}
+                        alt="logo"
+                    />
+                </div>
                 {/* <NavLink
                 className='login'
                 to= "/signin"

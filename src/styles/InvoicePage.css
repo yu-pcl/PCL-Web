@@ -24,7 +24,7 @@ body{
     position: relative;
 }
 .topBox{
-    width: 58vw;
+    width: 70vw;
     height: 10vh;
     display: flex;
     justify-content: space-between;
