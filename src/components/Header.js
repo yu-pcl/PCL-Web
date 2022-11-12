@@ -8,19 +8,23 @@ import axios from 'axios';
 import { removeCookie } from '../pages/Cooke'; 
 import ManagerHeader from '../components/ManagerHeader';  
 import EmployeeHeader from '../components/EmployeeHeader';  
-
+import DefaultHeader from './DefaultHeader';
 const Header = (props) => { 
     if (window.location.pathname === '/statement') return null;
-
+    
     let is_superuser = getCookie("is_superuser")
-
-    if(is_superuser=="true"){
+    let fullname = getCookie("fullname")
+    console.log(fullname);
+    
+    if(fullname===undefined){
+        return <DefaultHeader/>;
+    }
+    if(is_superuser==="true"){
        return <ManagerHeader/>;
     }
-    if(is_superuser=="false"){
+    if(is_superuser==="false"){
         return <EmployeeHeader/>;
     }
-    
 };
 
 export default Header;

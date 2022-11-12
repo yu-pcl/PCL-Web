@@ -55,7 +55,7 @@ const MemberManage = () => {
           </div>
           <div>
           <button className='member_modify' onClick={modifyClick}><img src={membermodify} /></button>
-          <button className='member_add' onClick={delClick}><img src={memberdel} /></button>
+          <button className='member_del' onClick={delClick}><img src={memberdel} /></button>
           <button className='member_add' onClick={addClick}><img src={memberadd} /></button>
           </div>
           

@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../assets/logo.png';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components'; 
 import { getCookie } from '../pages/Cooke';  
-
+import Dropdown from './Dropdown';
     const EmployeeHeader=(props)=>{
 
+        const [view,set_view]=useState(false);
         let fullname = getCookie("fullname");
         let worker_id = getCookie("worker_id")
             return (
@@ -58,8 +59,9 @@ import { getCookie } from '../pages/Cooke';
                                 </h4>   
                             </NavLink>
                             
-                            <h4 className='name'>
+                            <h4 className='name' onClick={()=>{set_view(!view)}}>
                                 {fullname}님
+                                {view && <Dropdown/>}
                             </h4>
                         </div>
                 </HeaderContainer>
@@ -107,6 +109,9 @@ background-color : white;
         justify-content: space-around;
     }
     .name{
+        width:7vw;
+        
         color: #007200;
+        list-style:none;
     }
 `;

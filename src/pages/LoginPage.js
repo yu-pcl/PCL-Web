@@ -136,6 +136,7 @@ form{
     
     h1{
         font-size : 22px;
+        font-weight: bold;
     }
 
     div{
@@ -147,7 +148,7 @@ form{
 };
 input{
     width: 295px;
-    height: 40px;
+    height: 50px;
     text-align: left;
     color: #060A0E;
     opacity: 1;
@@ -157,6 +158,8 @@ input{
     opacity: 1;
     padding: 0px;
     padding-left: 5px;
+    font-weight: bold;
+    padding-left:0.5vw;
 }
 input[type="submit"]{
     color: white;
@@ -168,6 +171,7 @@ input[type="submit"]{
     box-shadow: 0px 3px 6px #00000029;
     border : 0px;
     opacity: 1;
+    font-size:16px;
 }
 `;
 

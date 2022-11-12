@@ -64,8 +64,15 @@ body{
     display: flex;
     border-bottom: 1px solid #70707029;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-evenly;}
+
+.lead :nth-child(1){
+    margin-left: 2vw;
 }
+.lead :nth-child(3){
+    margin-left: 3vw;
+}
+
 .list{
     width: 67vw;
     height: 8vh;
@@ -73,6 +80,11 @@ body{
     border-bottom: 1px solid #70707029;
     align-items: center;
     justify-content: space-around;
+
+    margin-right: 3vw;
+}
+.list :nth-child(3){
+    margin-right: 2vw;
 }
 .page_selector{
     position: absolute;
