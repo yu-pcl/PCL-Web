@@ -12,13 +12,12 @@ import EmployeeHeader from '../components/EmployeeHeader';
 const Header = (props) => { 
     if (window.location.pathname === '/statement') return null;
 
-    let fullname = getCookie("fullname");
-    let worker_id = getCookie("worker_id")
+    let is_superuser = getCookie("is_superuser")
 
-    if(worker_id=="1000"){
+    if(is_superuser=="true"){
        return <ManagerHeader/>;
     }
-    if(worker_id!=="1000"){
+    if(is_superuser=="false"){
         return <EmployeeHeader/>;
     }
     
