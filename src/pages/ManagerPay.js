@@ -1,49 +1,75 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import search_img from '../assets/search.png';
 import StatementPage from './StatementPage';
+import { getCookie, setCookie } from './Cooke';
+import arrow_left from '../assets/arrow_left.png';
+import arrow_right from '../assets/arrow_right.png';
+import search_img from '../assets/search.png';
 
 const dummy = {
-    "number" : 10236,
-    "name" : "이의찬",
     "year" : 2022,
     "month" : 10
 };
 
 const ManagerPay = () => {
-    const [name, SetName] = useState(dummy.name);
-    const [number, SetNumber] = useState(dummy.number);
+    let fullname=getCookie("fullname");
+    let worker_id = getCookie("worker_id");
     const [year, setYear] = useState(dummy.year);
     const [month, setMonth] = useState(dummy.month);
+    const [yearMonth, setYearMonth] = useState(dummy.year.toString()+dummy.month.toString());
+
+    const handleClickLeftButton = ()=>{
+        if (month === 1){
+            setYear(year-1);
+            setMonth(12);
+        } else {
+            setMonth(month-1);
+        }     
+    };
+
+    const handleClickRightButton = ()=>{
+        if (month === 12){
+            setYear(year+1);
+            setMonth(1);
+        } else {
+            setMonth(month+1);
+        }
+    };
+
+    useEffect(() => {
+        setYearMonth(year.toString()+month.toString());
+        setCookie("yearMonth", yearMonth);
+        console.log(yearMonth);
+    }, [month])
+
 
     return (
         <Container>
             <Content>
-            <Search>
-                <div>
-                    <input
-                        name = 'name'
-                    />
-                    <button className='search_img'><img src={search_img}/></button>
-                </div>
-            </Search>
-            <Top>
-                <div>
-                    <h4 className='number'>{number}</h4>
-                    <h4>{name} 님</h4>
-                </div>
-                <div>
-                    <h4>{year}년</h4>
-                    <h4>{month}월 급여명세서</h4>
-                </div>
-                    
-                <div>
-                    <p>이전</p>
-                    <p>다음</p>
-                </div>
-            </Top>
-            <StatementPage />
+                <Search>
+                    <div>
+                        <input
+                            name = 'name'
+                        />
+                        <button className='search_img'><img src={search_img}/></button>
+                    </div>
+                </Search>
+                <Top>
+                    <div>
+                        <h4 className='number'>{worker_id}</h4>
+                        <h4>{fullname} 님</h4>
+                    </div>
+                    <div>
+                        <h4>{year}년</h4>
+                        <h4>{month}월 급여명세서</h4>
+                    </div>
+                    <div className='buttons'>
+                        <button onClick={handleClickLeftButton}><img src={arrow_left}/>이전</button>
+                        <button onClick={handleClickRightButton}>다음<img src={arrow_right}/></button>
+                    </div>
+                </Top>
+                <StatementPage />
             <Bottom>
                 <button onClick={() => window.open('http://localhost:3000/statement', '_blank')}>전자명세서 발급</button>
             </Bottom>

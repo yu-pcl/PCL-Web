@@ -2,22 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { getCookie, setCookie } from './Cooke';
 import { useState, useEffect, useCallback } from 'react';
-import arrow_left from '../assets/arrow_left.png';
-import arrow_right from '../assets/arrow_right.png';
 import axios from 'axios';
 
-const dummy = {
-    "number" : 10236,
-    "name" : "이의찬",
-};
-
 const StatementPage = () => {
+    let fullname=getCookie("fullname");
     let worker_id = getCookie("worker_id");
-    const [name, SetName] = useState(dummy.name);
-    const [number, SetNumber] = useState(dummy.number);
-    const [year, setYear] = useState(2022);
-    const [month, setMonth] = useState(10);
-    const [yearMonth, setYearMonth] = useState(202210);
+    let yearMonth = getCookie("yearMonth");
     const [basicPay, setBasicPay] = useState([]);
     const [deliveryFee, setDeliveryFee] = useState([]);
     const [pension, setPension] = useState([]);
@@ -28,84 +18,32 @@ const StatementPage = () => {
     const [insuranceTotal, setInsuranceTotal] = useState([]);
     const [total, setTotal] = useState([]);
 
-    const handleClickLeftButton = useCallback(e=>{
-        if (month === 1){
-            setYear(year-1);
-            setMonth(12);
-        } else {
-            setMonth(month-1);
-            console.log(month);
-            console.log(yearMonth)
-        }
-        
-    }, []);
 
-    const handleClickRightButton = useCallback(e=>{
-        if (month === 12){
-            setYear(year+1);
-            setMonth(1);
-        } else {
-            setMonth(month+1);
-            console.log(month);
-        }
-    }, []);
-
-    useEffect(()=> {
-        fetch(`http://acslab.toygoon.com:8000/api/employ/${worker_id}`, {
-            method : "GET"   
-        }).then(res=>res.json()).then(res=>{
-            setBasicPay(res.money_base);
-            setDeliveryFee(res.money_parcel);
-            setPension(res.money_pension);
-            setHealth(res.money_health);
-            setEmployment(res.money_employ);
-            setOccupational(res.money_accident);
-            setPayTotal(res.money_base+res.money_parcel);
-            setInsuranceTotal(res.money_pension+res.money_health+res.money_employ+res.money_accident);
-            setTotal(res.money_base+res.money_parcel-(res.money_pension+res.money_health+res.money_employ+res.money_accident));
-        });              
-    }, []);
-
-    const handleYearMonth = useCallback(() => {
-        axios.post("http://acslab.toygoon.com:8000/api/employ/",
+    useEffect(() => {
+        console.log(worker_id);
+        axios.post(`http://acslab.toygoon.com:8000/api/employ/${worker_id}`,
             {
-                worker_id : 1000,
                 month : yearMonth
             })
-            .then(function(response){
-                console.log(response);
-                setBasicPay(response.money_base);
-                setDeliveryFee(response.money_parcel);
-                setPension(response.money_pension);
-                setHealth(response.money_health);
-                setEmployment(response.money_employ);
-                setOccupational(response.money_accident);
-                setPayTotal(response.money_base+response.money_parcel);
-                setInsuranceTotal(response.money_pension+response.money_health+response.money_employ+response.money_accident);
-                setTotal(response.money_base+response.money_parcel-(response.money_pension+response.money_health+response.money_employ+response.money_accident));
-    
+            .then(function(res){
+                setBasicPay(res.data.money_base);
+                setDeliveryFee(res.data.money_parcel);
+                setPension(res.data.money_pension);
+                setHealth(res.data.money_health);
+                setEmployment(res.data.money_employ);
+                setOccupational(res.data.money_accident);
+                setPayTotal(res.data.money_base+res.data.money_parcel);
+                setInsuranceTotal(res.data.money_pension+res.data.money_health+res.data.money_employ+res.data.money_accident);
+                setTotal(res.data.money_base+res.data.money_parcel-(res.data.money_pension+res.data.money_health+res.data.money_employ+res.data.money_accident));
+                console.log(res.data.money_base);
             })
             .catch(function (error) {
                 console.log(error);
             });
-    }, [yearMonth]);
+        }, [yearMonth]);
 
     return (
         <>
-            <Top>
-                <div>
-                    <h4 className='number'>{number}</h4>
-                    <h4>{name} 님</h4>
-                </div>
-                <div>
-                    <h4>{year}년</h4>
-                    <h4>{month}월 급여명세서</h4>
-                </div>
-                <div className='buttons'>
-                    <button onClick={handleClickLeftButton}><img src={arrow_left}/>이전</button>
-                    <button onClick={handleClickRightButton}>다음<img src={arrow_right}/></button>
-                </div>
-            </Top>
             <Box>
                 <div className='boxTop'>
                     <div className='boxLeft'>
@@ -167,37 +105,6 @@ const StatementPage = () => {
 };
 
 export default StatementPage;
-
-const Top = styled.div`
-    width: 60vw;
-    height: 5vh;
-    display : flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-        div{
-            display : flex;
-        }
-        h4{
-            margin-right: 5px;
-        }
-        .number{
-            color: #007200;
-        }
-        .buttons{
-            width: 7vw;
-            height: 5vh;
-            justify-content: space-between;
-            align-items: center;
-            text-align : center;
-        }
-        img{
-            width:20px;
-            height:20px;
-        }
-    }
-`
 
 const Box = styled.div`
     width: 60vw;
