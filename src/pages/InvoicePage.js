@@ -1,6 +1,8 @@
 import React,  { useState } from 'react';
 import '../styles/InvoicePage.css';
 import axios from 'axios';
+import { getCookie } from './Cooke';
+import styled from 'styled-components'; 
 
 const dummy = {
     "year" : 2022,
@@ -9,9 +11,10 @@ const dummy = {
     "gaesu" : 250
 };
 
+let worker_id = getCookie("worker_id");
 const InvoicePage = () => {
 
-    const [member_list, setMemberList] = useState([]);
+    const [parcel_list, setParcelList] = useState([]);
     const [count_per_page, setCountPerPage] = useState(10);//페이지당출력할객체수
     const [current_page, setCurrentPage] = useState(1);//현재페이지번호(0부터시작)
     const [year, setYear] = useState(dummy.year);
@@ -19,20 +22,16 @@ const InvoicePage = () => {
     const [day, setDay] = useState(dummy.day);
     const [gaesu, setGaesu] = useState(dummy.gaesu);
 
-    axios.post('http://acslab.toygoon.com:8000/api/userlist/', {
+    axios.post(`http://acslab.toygoon.com:8000/api/paged_parcel/${worker_id}`, {
         count_per_page: count_per_page,
         current_page: current_page,
     }).then(function (res) {
-        setMemberList(res.data);
+        setParcelList(res.data);
     });
     
     const onClickHandler=(event)=>{
         setCurrentPage(event.currentTarget.value);
     } 
-    function addClick(e) {
-    window.location.replace("/add")
-    }
-
     return (
         <div className='wrap'>
             <div className='content'>
@@ -50,21 +49,21 @@ const InvoicePage = () => {
                 </div>
                 <div className='mainBox'>
                     <div className='lead'>
-                        <p></p>
+                        <p>번호</p>
                         <p>운송장번호</p>
                         <p>접수날짜</p>
                         <p>규격</p>
-                        <p>이메일</p>
+                        <p>등록 시각</p>
                     </div>
                     <div>
-                        {member_list.map(function (item, i) {
+                        {parcel_list.map(function (item, i) {
                         return (
                             <div key={i} className="list">
-                            <span>1</span>
-                            <span>{item.fullname}</span>
-                            <span>{item.worker_id}</span>
-                            <span>{item.phone}</span>
-                            <span>{item.email}</span>
+                            <span>{item.id}</span>
+                            <span>{item.num}</span>
+                            <span>{item.date}</span>
+                            <span>{item.size}</span>
+                            <span>{item.query_time}</span>
                             </div>
                         )
                         })}
@@ -85,3 +84,4 @@ const InvoicePage = () => {
 };
 
 export default InvoicePage;
+

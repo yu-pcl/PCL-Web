@@ -36,11 +36,15 @@ export default Dropdown;
 
 const Drop = styled.div`
 
-    li{
+    button{
+        width:4vw;
+        height:3vh;
         box-sizing:border-box;
         margin-top:0.5vh;
         box-shadow: 0px 3px 6px #00000029;
+        border:none;
         color:black;
+        background-color: white;
     }
 
      
