@@ -124,18 +124,33 @@ const Search = styled.div`
     }
 `
 const Top = styled.div`
+    width: 60vw;
+    height: 5vh;
     display : flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 
-    div{
-        display : flex;
-    }
-    h4{
-        margin-right: 5px;
-    }
-    .number{
-        color: #007200;
+        div{
+            display : flex;
+        }
+        h4{
+            margin-right: 5px;
+        }
+        .number{
+            color: #007200;
+        }
+        .buttons{
+            width: 7vw;
+            height: 5vh;
+            justify-content: space-between;
+            align-items: center;
+            text-align : center;
+        }
+        img{
+            width:20px;
+            height:20px;
+        }
     }
 `
 
