@@ -14,8 +14,14 @@ import Expectpage from './pages/Expectpage';
 import StatementPage from './pages/StatementPage';
 import MemberModify from './pages/MemberModify';
 import MemberDelete from './pages/MemberDelete';
+import PrivateRoute from "./components/PrivateRoute";
+import { getCookie } from './pages/Cooke';
 
 function App() {
+
+  const access = getCookie("access_token");
+  console.log(access);
+
   return (
     <div className='App'>
       <BrowserRouter>
@@ -23,16 +29,16 @@ function App() {
 
         <Routes>
           <Route path="/signin" element={<LoginPage />}/>
-          <Route path="/manage" element={<MemberManage/>}/>
-          <Route path="/manager" element={<ManagerPay/>}/>
-          <Route path="/employee" element={<EmployeePay/>}/>
-          <Route path="/add" element={<MemberAdd/>}/>
-          <Route path="/modify" element={<MemberModify/>}/>
-          <Route path="/delete" element={<MemberDelete/>}/>
-          <Route path="/invoice" element={<InvoicePage/>}/>
-          <Route path="/insight" element={<InsightPage/>}/>
-          <Route path="/expect" element={<Expectpage/>}/>
-          <Route path="/statement" element={<StatementPage />}/>
+          <Route path="/manage" element={<PrivateRoute authenticated={access} component={<MemberManage/>} />}/>
+          <Route path="/manager" element={<PrivateRoute authenticated={access} component={<ManagerPay/>} />}/>
+          <Route path="/employee" element={<PrivateRoute authenticated={access} component={<EmployeePay/>} />} />
+          <Route path="/add" element={<PrivateRoute authenticated={access} component={<MemberAdd/>} />} />
+          <Route path="/modify" element={<PrivateRoute authenticated={access} component={<MemberModify/>} />} />
+          <Route path="/delete" element={<PrivateRoute authenticated={access} component={<MemberDelete/>} />} />
+          <Route path="/invoice" element={<PrivateRoute authenticated={access} component={<InvoicePage/>} />} />
+          <Route path="/insight" element={<PrivateRoute authenticated={access} component={<InsightPage/>} />} />
+          <Route path="/expect" element={<PrivateRoute authenticated={access} component={<Expectpage/>} />} />
+          <Route path="/statement" element={<PrivateRoute authenticated={access} component={<StatementPage/>} />} />
           <Route path="/test" element={<TestPage/>}/>
           <Route path="*" element={<NotFoundpage/>}/>
         </Routes>
