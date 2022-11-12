@@ -184,7 +184,6 @@ const BottomContent = styled.div`
         display: flex;
         justify-content: space-between;
         flex-direction: column;
-        align-items: center;
 
         h5{
             width: 31vw;

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Chart from 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
+import styled from 'styled-components';
+
 
 let employee_number_arr=[];
 let employee_month_arr=[];
 
 const EmployeeGraph = () => {
     const [employee_count_list,set_employee_count_list]=useState([]);
-
 
     useEffect(()=> {
         fetch('http://acslab.toygoon.com:8000/api/insight/', {
@@ -27,6 +28,7 @@ const EmployeeGraph = () => {
     )
 };
 const GraphData=()=>{
+
     let data =  {
         labels:employee_month_arr,
         datasets: [
@@ -48,3 +50,4 @@ const GraphData=()=>{
 }
 
 export default EmployeeGraph;
+
