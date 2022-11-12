@@ -24,15 +24,16 @@ const LoginPage = () => {
                 const worker_id=(response.data.worker_id);
                 const access_token = response.data.token;
                 const fullname = response.data.fullname;
-               
+                const is_superuser = response.data.is_superuser;
+
                 setCookie("access_token",`${access_token}`);
                 setCookie("worker_id",`${worker_id}`)
                 setCookie("fullname",`${fullname}`)
+                setCookie("is_superuser",`${is_superuser}`);
+
                 //토큰 반환
                 axios.defaults.headers.common['Authorization']=`Token ${access_token}`;
-                if(response.data.token!==undefined){
-                    document.location.href = '/';
-                }
+                
                 //관리자용 급여 관리 페이지로 전환
                 if(response.data.worker_id=="1000"){
                     document.location.href = '/manager';

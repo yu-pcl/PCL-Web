@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import search_img from '../assets/search.png';
 import downicon from '../assets/downicon.png';
 import memberadd from '../assets/member_add.png';
+import membermodify from '../assets/member_modify.png';
 import '../styles/MemberManage.css';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
@@ -26,6 +27,10 @@ const MemberManage = () => {
   function addClick(e) {
     window.location.replace("/add")
   }
+  function modifyClick(e) {
+    window.location.replace("/modify")
+  }
+
   return (
     <div className='wrap'>
       <div className='content'>
@@ -44,14 +49,17 @@ const MemberManage = () => {
               <p>이름순</p>
             </div>
           </div>
+          <div>
+          <button className='member_modify' onClick={modifyClick}><img src={membermodify} /></button>
           <button className='member_add' onClick={addClick}><img src={memberadd} /></button>
+          </div>
+          
         </div>
 
         <div className='mainBox'>
           <div className='lead'>
-            <p>번호</p>
-            <p>이름</p>
             <p>사원번호</p>
+            <p>이름</p>
             <p>전화번호</p>
             <p>이메일</p>
           </div>
@@ -59,9 +67,8 @@ const MemberManage = () => {
             {member_list.map(function (item, i) {
               return (
                 <div key={i} className="list">
-                  <span>1</span>
-                  <span>{item.fullname}</span>
                   <span>{item.worker_id}</span>
+                  <span>{item.fullname}</span>
                   <span>{item.phone}</span>
                   <span>{item.email}</span>
                 </div>

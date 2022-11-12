@@ -7,7 +7,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { RESISTER_USER } from '../pages/user_type';
 
-const MemberAdd = () => {
+import { setCookie,getCookie } from './Cooke';
+const MemberModify = () => {
 
     const [worker_id, setworker_id] = useState("");
     const [fullname, setfullname] = useState("");
@@ -17,12 +18,41 @@ const MemberAdd = () => {
     const [is_superuser, setis_superuser] = useState(false);
     const dispatch = useDispatch()
 
+        useEffect(()=> {
+
+            let modify_target_id = prompt("수정할 사원 번호를 입력하세요.");
+            setCookie("modify_worker_id",`${modify_target_id}`);
+            fetch(`http://acslab.toygoon.com:8000/api/modify/${modify_target_id}`, {
+                method : "GET"   
+            }).then(res=>res.json()).then(res=>{
+                setworker_id(res.worker_id);
+                setfullname(res.fullname);
+                setemail(res.email);
+                setpassword(res.password);
+                setphone(res.phone);
+                setis_superuser(res.is_superuser);
+            });              
+        }, []);
+    
+        const del_click =(e)=>{
+
+            let modify_worker_id=getCookie("modify_worker_id");
+            const request = axios.post(`http://acslab.toygoon.com:8000/api/deluser/6666`)
+            .then(function(response){
+                if(response.data.result!==undefined){
+                    alert('직원 삭제 성공');
+                    document.location.href = '/manage';
+                }
+            });
+        };
+
     function registerWorker(dataToSubmit){
-        const request = axios.post("http://acslab.toygoon.com:8000/api/register/",dataToSubmit)
+        let modify_worker_id=getCookie("modify_worker_id");
+        const request = axios.post(`http://acslab.toygoon.com:8000/api/modify/${modify_worker_id}`,dataToSubmit)
             .then(function(response){
                 console.log(response.data);
-                if(response.data.token!==undefined){
-                    alert('직원 등록 성공');
+                if(response.data.result!==undefined){
+                    alert('직원 수정 성공');
                     document.location.href = '/manage';
                 }
             });
@@ -75,7 +105,8 @@ const MemberAdd = () => {
                     
                 </div>
                 <span className='member_btn'>
-                    <button type='submit'formAction='' >등록</button>
+                    <button type='submit'formAction='' >수정</button>
+                    <button  onClick={del_click}>삭제</button>
                 </span>
 
             </form>
@@ -86,4 +117,4 @@ const MemberAdd = () => {
 
 };
 
-export default MemberAdd;
+export default MemberModify;
