@@ -64,7 +64,8 @@ body{
     display: flex;
     border-bottom: 1px solid #70707029;
     align-items: center;
-    justify-content: space-evenly;}
+    justify-content: space-evenly;
+}
 
 .lead :nth-child(1){
     margin-left: 2vw;

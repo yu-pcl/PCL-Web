@@ -35,7 +35,7 @@ const InvoicePage = () => {
     return (
         <div className='wrap'>
             <div className='content'>
-                <div className='topBox'>
+                {/* <div className='topBox'>
                     <div>
                         <h2>{year}년 {month}월 {day}일</h2>
                     </div>
@@ -46,7 +46,7 @@ const InvoicePage = () => {
                             <h2>개</h2>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className='mainBox'>
                     <div className='lead'>
                         <p>번호</p>

@@ -29,8 +29,6 @@ import Dropdown from './Dropdown';
             );
     }
 
-   
-
 export default DefaultHeader;
 
 const HeaderContainer = styled.div`

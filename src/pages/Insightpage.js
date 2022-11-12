@@ -81,9 +81,9 @@ const Insight = () => {
                             <div className='pieChart'>
                                 <PieChart
                                 data={[
-                                    { title: 'One', value: size1, color: '#E38627' },
+                                    { title: 'One', value: size1, color: '#007200' },
                                     { title: 'Two', value: size2, color: '#C13C37' },
-                                    { title: 'Three', value: size3, color: '#6A2135' },
+                                    { title: 'Three', value: size3, color: '#FFBA35' },
                                 ]}
                                 lineWidth={20}
                                 radius={40}
@@ -242,7 +242,7 @@ const BottomContent = styled.div`
                             .color1{
                                 width: 10px;
                                 height: 10px;
-                                background: #E38627 0% 0% no-repeat padding-box;
+                                background: #007200 0% 0% no-repeat padding-box;
                             }
                             .color2{
                                 width: 10px;
@@ -252,7 +252,7 @@ const BottomContent = styled.div`
                             .color3{
                                 width: 10px;
                                 height: 10px;
-                                background: #6A2135 0% 0% no-repeat padding-box;
+                                background: #FFBA35 0% 0% no-repeat padding-box;
                             }
                         }
                         
