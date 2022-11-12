@@ -3,6 +3,7 @@ import search_img from '../assets/search.png';
 import downicon from '../assets/downicon.png';
 import memberadd from '../assets/member_add.png';
 import membermodify from '../assets/member_modify.png';
+import memberdel from '../assets/member_del.png';
 import '../styles/MemberManage.css';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
@@ -30,6 +31,9 @@ const MemberManage = () => {
   function modifyClick(e) {
     window.location.replace("/modify")
   }
+  function delClick(e) {
+    window.location.replace("/delete")
+  }
 
   return (
     <div className='wrap'>
@@ -51,6 +55,7 @@ const MemberManage = () => {
           </div>
           <div>
           <button className='member_modify' onClick={modifyClick}><img src={membermodify} /></button>
+          <button className='member_add' onClick={delClick}><img src={memberdel} /></button>
           <button className='member_add' onClick={addClick}><img src={memberadd} /></button>
           </div>
           

@@ -14,6 +14,7 @@ import InsightPage from './pages/Insightpage';
 import Expectpage from './pages/Expectpage';
 import StatementPage from './pages/StatementPage';
 import MemberModify from './pages/MemberModify';
+import MemberDelete from './pages/MemberDelete';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/employee" element={<EmployeePay/>}/>
           <Route path="/add" element={<MemberAdd/>}/>
           <Route path="/modify" element={<MemberModify/>}/>
+          <Route path="/delete" element={<MemberDelete/>}/>
           <Route path="/invoice" element={<InvoicePage/>}/>
           <Route path="/insight" element={<InsightPage/>}/>
           <Route path="/expect" element={<Expectpage/>}/>

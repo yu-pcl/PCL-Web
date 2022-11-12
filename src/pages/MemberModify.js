@@ -37,7 +37,7 @@ const MemberModify = () => {
         const del_click =(e)=>{
 
             let modify_worker_id=getCookie("modify_worker_id");
-            const request = axios.post(`http://acslab.toygoon.com:8000/api/deluser/6666`)
+            const request = axios.post(`http://acslab.toygoon.com:8000/api/deluser/${modify_worker_id}`)
             .then(function(response){
                 if(response.data.result!==undefined){
                     alert('직원 삭제 성공');
@@ -63,6 +63,8 @@ const MemberModify = () => {
             worker_id:worker_id,
             password:password,
             fullname:fullname,
+            email:email,
+            phone:phone,
             is_superuser,is_superuser,
         }
         dispatch(registerWorker(body));

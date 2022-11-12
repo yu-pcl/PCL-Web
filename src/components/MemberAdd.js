@@ -20,10 +20,9 @@ const MemberAdd = () => {
     function registerWorker(dataToSubmit){
         const request = axios.post("http://acslab.toygoon.com:8000/api/register/",dataToSubmit)
             .then(function(response){
-                console.log(response.data);
                 if(response.data.token!==undefined){
-                    alert('직원 등록 성공');
-                    document.location.href = '/manage';
+                    alert("직원 등록 성공");
+                    window.location.replace("/manage")
                 }
             });
     }
@@ -33,6 +32,8 @@ const MemberAdd = () => {
             worker_id:worker_id,
             password:password,
             fullname:fullname,
+            email:email,
+            phone:phone,
             is_superuser,is_superuser,
         }
         dispatch(registerWorker(body));
