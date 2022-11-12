@@ -31,12 +31,12 @@ const GraphData=()=>{
         labels:employee_month_arr,
         datasets: [
           {
-            type: 'line',
-            label: '매출',
-            backgroundColor: '#007200',
+            type: 'bar',
+            label: '직원 수',
+            backgroundColor: 'rgb(353,186,53)',
             data: employee_number_arr,
-            borderColor: '#007200',
-            borderWidth: 2,
+            borderColor: 'rgb(353,186,53)',
+            borderWidth: 1,
           },
         ],
       };

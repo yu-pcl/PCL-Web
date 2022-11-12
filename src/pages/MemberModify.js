@@ -34,17 +34,6 @@ const MemberModify = () => {
             });              
         }, []);
     
-        const del_click =(e)=>{
-
-            let modify_worker_id=getCookie("modify_worker_id");
-            const request = axios.post(`http://acslab.toygoon.com:8000/api/deluser/${modify_worker_id}`)
-            .then(function(response){
-                if(response.data.result!==undefined){
-                    alert('직원 삭제 성공');
-                    document.location.href = '/manage';
-                }
-            });
-        };
 
     function registerWorker(dataToSubmit){
         let modify_worker_id=getCookie("modify_worker_id");
@@ -108,7 +97,6 @@ const MemberModify = () => {
                 </div>
                 <span className='member_btn'>
                     <button type='submit'formAction='' >수정</button>
-                    <button  onClick={del_click}>삭제</button>
                 </span>
 
             </form>
