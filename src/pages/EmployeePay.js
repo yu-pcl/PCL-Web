@@ -61,7 +61,7 @@ const EmployeePay = () => {
                 </Top>
                     <StatementPage />
                 <Bottom>
-                    <button onClick={() => window.open('http://localhost:3000/statement', '_blank')}>전자명세서 발급</button>
+                    <button onClick={() => window.open('http://acslab.toygoon.com:8080/', '_blank')}>전자명세서 발급</button>
                 </Bottom>
             </Content>
         </Container>
