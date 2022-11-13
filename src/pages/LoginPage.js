@@ -5,7 +5,7 @@ import {useDispatch} from 'react-redux';
 import axios from 'axios';
 import { LOGIN_USER } from './user_type';
 import { json, Navigate } from 'react-router-dom';
-import { setCookie } from './Cooke';
+import { setCookie,getCookie } from './Cooke';
 import { useNavigate } from 'react-router-dom';
 import login_image from '../assets/login_image.jpeg';
 
@@ -35,10 +35,10 @@ const LoginPage = () => {
                 axios.defaults.headers.common['Authorization']=`Token ${access_token}`;
                 
                 //관리자용 급여 관리 페이지로 전환
-                if(response.data.worker_id=="1000"){
+                if(is_superuser==="true"){
                     document.location.href = '/manager';
                 }
-                if(response.data.worker_id!=="1000"){
+                if(is_superuser==="false"){
                     document.location.href = '/employee';
                 }
 
