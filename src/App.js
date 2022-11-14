@@ -40,7 +40,7 @@ function App() {
           <Route path="/expect" element={<PrivateRoute authenticated={access} component={<Expectpage/>} />} />
           <Route path="/statement" element={<PrivateRoute authenticated={access} component={<StatementPage/>} />} />
           <Route path="/test" element={<TestPage/>}/>
-          <Route path="*" element={<NotFoundpage/>}/>
+          <Route path="*" element={<PrivateRoute authenticated={access} component={<NotFoundpage/>} />} />
         </Routes>
       </BrowserRouter>
     </div>

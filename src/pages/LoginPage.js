@@ -35,10 +35,10 @@ const LoginPage = () => {
                 axios.defaults.headers.common['Authorization']=`Token ${access_token}`;
                 
                 //관리자용 급여 관리 페이지로 전환
-                if(is_superuser==="true"){
+                if(is_superuser===true){
                     document.location.href = '/manager';
                 }
-                if(is_superuser==="false"){
+                else {
                     document.location.href = '/employee';
                 }
 
