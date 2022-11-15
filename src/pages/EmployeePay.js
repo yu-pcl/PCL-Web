@@ -14,6 +14,7 @@ const dummy = {
 const EmployeePay = () => {
     let fullname=getCookie("fullname");
     let worker_id = getCookie("worker_id");
+    setCookie("search_id", getCookie("worker_id"));
     const [year, setYear] = useState(dummy.year);
     const [month, setMonth] = useState(dummy.month);
     const [yearMonth, setYearMonth] = useState(dummy.year.toString()+dummy.month.toString());

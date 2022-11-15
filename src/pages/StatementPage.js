@@ -5,9 +5,8 @@ import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 const StatementPage = () => {
-    let fullname=getCookie("fullname");
-    let worker_id = getCookie("worker_id");
     let yearMonth = getCookie("yearMonth");
+    let search_id = getCookie("search_id");
     const [basicPay, setBasicPay] = useState([]);
     const [deliveryFee, setDeliveryFee] = useState([]);
     const [pension, setPension] = useState([]);
@@ -18,10 +17,10 @@ const StatementPage = () => {
     const [insuranceTotal, setInsuranceTotal] = useState([]);
     const [total, setTotal] = useState([]);
 
-
     useEffect(() => {
-        console.log(worker_id);
-        axios.post(`http://acslab.toygoon.com:8000/api/employ/${worker_id}`,
+        console.log(search_id);
+        console.log(yearMonth);
+        axios.post(`http://acslab.toygoon.com:8000/api/employ/${search_id}`,
             {
                 month : yearMonth
             })
@@ -35,7 +34,6 @@ const StatementPage = () => {
                 setPayTotal(res.data.money_base+res.data.money_parcel);
                 setInsuranceTotal(res.data.money_pension+res.data.money_health+res.data.money_employ+res.data.money_accident);
                 setTotal(res.data.money_base+res.data.money_parcel-(res.data.money_pension+res.data.money_health+res.data.money_employ+res.data.money_accident));
-                console.log(res.data.money_base);
             })
             .catch(function (error) {
                 console.log(error);

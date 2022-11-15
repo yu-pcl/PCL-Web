@@ -6,6 +6,7 @@ import { getCookie, setCookie } from './Cooke';
 import arrow_left from '../assets/arrow_left.png';
 import arrow_right from '../assets/arrow_right.png';
 import search_img from '../assets/search.png';
+import axios from 'axios';
 
 const dummy = {
     "year" : 2022,
@@ -13,8 +14,13 @@ const dummy = {
 };
 
 const ManagerPay = () => {
-    let fullname=getCookie("fullname");
-    let worker_id = getCookie("worker_id");
+    useEffect(()=>{
+        setCookie("search_id", getCookie("worker_id"));
+        console.log("망함");
+    }, []);
+    const [id, setId] = useState(getCookie("worker_id"));
+    const [name, setName] = useState(getCookie("fullname"));
+    const [searchName, setSearchName] = useState([]);
     const [year, setYear] = useState(dummy.year);
     const [month, setMonth] = useState(dummy.month);
     const [yearMonth, setYearMonth] = useState(dummy.year.toString()+dummy.month.toString());
@@ -40,8 +46,24 @@ const ManagerPay = () => {
     useEffect(() => {
         setYearMonth(year.toString()+month.toString());
         setCookie("yearMonth", yearMonth);
-        console.log(yearMonth);
     }, [month])
+
+    const onNameHandler=(event)=>{
+        setSearchName(event.target.value);
+    }
+
+    const onSearchHandler=()=>{
+        setName(searchName);
+        setCookie("searchName", searchName);
+        axios.post('http://acslab.toygoon.com:8000/api/employ/search',
+        {
+            fullname : searchName
+        })
+        .then(function(response){
+            setCookie("search_id", response.data.user.worker_id);
+            setId(response.data.user.worker_id);
+        })
+    }
 
 
     return (
@@ -50,15 +72,17 @@ const ManagerPay = () => {
                 <Search>
                     <div>
                         <input
-                            name = 'name'
+                            placeholder='이름' 
+                            type="string"
+                            onChange={onNameHandler}
                         />
-                        <button className='search_img'><img src={search_img}/></button>
+                        <button className='search_img' onClick={onSearchHandler}><img src={search_img}/></button>
                     </div>
                 </Search>
                 <Top>
                     <div>
-                        <h4 className='number'>{worker_id}</h4>
-                        <h4>{fullname} 님</h4>
+                        <h4 className='number'>{id}</h4>
+                        <h4>{name} 님</h4>
                     </div>
                     <div>
                         <h4>{year}년</h4>
@@ -71,7 +95,8 @@ const ManagerPay = () => {
                 </Top>
                 <StatementPage />
             <Bottom>
-                <button onClick={() => window.open('http://acslab.toygoon.com:8080/statement', '_blank')}>전자명세서 발급</button>
+                {/* <button onClick={() => window.open('http://acslab.toygoon.com:8080/statement', '_blank')}>전자명세서 발급</button> */}
+                <button onClick={() => window.open('http://localhost:3000/statement', '_blank')}>전자명세서 발급</button>
             </Bottom>
             </Content>
         </Container>

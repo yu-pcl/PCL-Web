@@ -21,7 +21,6 @@ const Dropdown=()=>{
                 alert("로그아웃");
                 document.location.href = '/signin';
             }
-            
         })
     }
 
@@ -46,6 +45,4 @@ const Drop = styled.div`
         color:black;
         background-color: white;
     }
-
-     
 `;
