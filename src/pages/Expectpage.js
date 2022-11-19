@@ -58,14 +58,14 @@ const Expectpage = () => {
                             <div className='bar'></div>
                             <h2>누적 운임비</h2>
                         </div>
-                        <h2 className='money'>{salary.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h2>
+                        <h2 className='money'>{Math.round(salary).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h2>
                     </div>
                     <div className='table'>
                         <div className='title'>
                             <div className='bar'></div>
                             <h2>잔여 금액</h2>
                         </div>
-                        <h2 className='money'>{difference.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h2>
+                        <h2 className='money'>{Math.round(difference).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h2>
                     </div>
                     <div className='predict'>
                         <div className='bar'></div>
