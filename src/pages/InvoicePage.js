@@ -5,11 +5,13 @@ import { getCookie } from './Cooke';
 import styled from 'styled-components'; 
 
 const dummy = {
-    "year" : 2022,
-    "month" : 11,
-    "day" : 2,
     "gaesu" : 250
 };
+
+let today = new Date();
+let year = today.getFullYear();
+let month = today.getMonth()+1;
+let date = today.getDate();
 
 let worker_id = getCookie("worker_id");
 const InvoicePage = () => {
@@ -17,9 +19,6 @@ const InvoicePage = () => {
     const [parcel_list, setParcelList] = useState([]);
     const [count_per_page, setCountPerPage] = useState(10);//페이지당출력할객체수
     const [current_page, setCurrentPage] = useState(1);//현재페이지번호(0부터시작)
-    const [year, setYear] = useState(dummy.year);
-    const [month, setMonth] = useState(dummy.month);
-    const [day, setDay] = useState(dummy.day);
     const [gaesu, setGaesu] = useState(dummy.gaesu);
 
     axios.post(`http://acslab.toygoon.com:8000/api/paged_parcel/${worker_id}`, {
@@ -28,6 +27,7 @@ const InvoicePage = () => {
     }).then(function (res) {
         setParcelList(res.data);
     });
+
     
     const onClickHandler=(event)=>{
         setCurrentPage(event.currentTarget.value);
@@ -35,9 +35,9 @@ const InvoicePage = () => {
     return (
         <div className='wrap'>
             <div className='content'>
-                {/* <div className='topBox'>
+                <div className='topBox'>
                     <div>
-                        <h2>{year}년 {month}월 {day}일</h2>
+                        <h2>{year}년 {month}월 {date}일</h2>
                     </div>
                     <div className='gun'>
                         <h2>총</h2>
@@ -46,7 +46,7 @@ const InvoicePage = () => {
                             <h2>개</h2>
                         </div>
                     </div>
-                </div> */}
+                </div> 
                 <div className='mainBox'>
                     <div className='lead'>
                         <p>번호</p>
