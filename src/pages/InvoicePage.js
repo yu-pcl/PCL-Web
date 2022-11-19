@@ -4,10 +4,6 @@ import axios from 'axios';
 import { getCookie } from './Cooke';
 import styled from 'styled-components'; 
 
-const dummy = {
-    "gaesu" : 250
-};
-
 let today = new Date();
 let year = today.getFullYear();
 let month = today.getMonth()+1;
@@ -19,7 +15,7 @@ const InvoicePage = () => {
     const [parcel_list, setParcelList] = useState([]);
     const [count_per_page, setCountPerPage] = useState(10);//페이지당출력할객체수
     const [current_page, setCurrentPage] = useState(1);//현재페이지번호(0부터시작)
-    const [gaesu, setGaesu] = useState(dummy.gaesu);
+    const [today_account, set_today_account] = useState();
 
     axios.post(`http://acslab.toygoon.com:8000/api/paged_parcel/${worker_id}`, {
         count_per_page: count_per_page,
@@ -28,7 +24,13 @@ const InvoicePage = () => {
         setParcelList(res.data);
     });
 
-    
+    axios.post(`http://acslab.toygoon.com:8000/api/paged_parcel/${worker_id}/today`, {
+        count_per_page: count_per_page,
+        current_page: 0,
+    }).then(function (res) {
+        set_today_account(res.data[0].total_count);
+    });
+
     const onClickHandler=(event)=>{
         setCurrentPage(event.currentTarget.value);
     } 
@@ -42,7 +44,7 @@ const InvoicePage = () => {
                     <div className='gun'>
                         <h2>총</h2>
                         <div className='gaesu'>
-                            <h1>{gaesu}</h1>
+                            <h1>{today_account}</h1>
                             <h2>개</h2>
                         </div>
                     </div>
