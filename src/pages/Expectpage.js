@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import axios from 'axios';
 import boxIcon from '../assets/boxIcon.png';
 import truckIcon1 from '../assets/truckIcon1.png';
+import { getCookie } from './Cooke';
 
 const Expectpage = () => {
+    let worker_id = getCookie("worker_id");
     const [wish, setWish] = useState([]);
     const [salary, setSalary] = useState([]);
     const [difference, setDifference] = useState([]);
@@ -20,7 +22,7 @@ const Expectpage = () => {
     const handleClickButton = useCallback(() => {
         axios.post("http://acslab.toygoon.com:8000/api/regression/",
             {
-                worker_id : 1000,
+                worker_id : worker_id,
                 wish : wish
             })
             .then(function(response){
