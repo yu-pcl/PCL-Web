@@ -263,7 +263,6 @@ const Top = styled.div`
             text-align : center;
             button {
                 width: 3vw;
-                border:none;
             }
         }
         img{
