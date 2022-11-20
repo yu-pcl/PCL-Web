@@ -6,6 +6,7 @@ import membermodify from '../assets/member_modify.png';
 import memberdel from '../assets/member_del.png';
 import '../styles/MemberManage.css';
 import axios from 'axios';
+import icon_employee from "../assets/employee.png";
 import { useDispatch } from 'react-redux';
 import { MEMBER_LIST } from './user_type';
 
@@ -39,6 +40,14 @@ const MemberManage = () => {
     <div className='wrap'>
       <div className='content'>
         <div className='top'>
+          <div className='icon_em'>
+            <span>
+
+              <img src={icon_employee}></img>
+              <p>직원 관리</p>
+
+            </span>
+          </div>
           <div>
             <button className='member_modify' onClick={modifyClick}><img src={membermodify} /></button>
             <button className='member_del' onClick={delClick}><img src={memberdel} /></button>
