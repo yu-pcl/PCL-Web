@@ -68,7 +68,7 @@ body{
 }
 .lead p{
     display: flex;
-    width: 15vw;
+    width: 20vw;
 }
 .lead p:nth-child(1){
     padding-left: 2vw;
@@ -80,10 +80,7 @@ body{
     padding-left: 5vw;
 }
 .lead p:nth-child(4){
-    padding-left: 4vw;
-}
-.lead p:nth-child(5){
-    padding-left: 3vw;
+    margin-right: 1vw;
 }
 
 .list{
@@ -97,23 +94,19 @@ body{
 
 .list span{
     display: flex;
-    width: 15vw;
+    width: 20vw;
 }
 .list span:nth-child(1){
     padding-left: 2vw;
 }
 .list span:nth-child(2){
-
-    padding-left: 0.5vw;
+    margin-right: 0vw;
 }
 .list span:nth-child(3){
-    padding-left: 0.2vw;
+    padding-left: 2.5vw;
 }
 .list span:nth-child(4){
-    padding-left: 1.5vw;
-}
-.list span:nth-child(5){
-    padding-left: 3vw;
+    margin-right: 4vw;
 }
 .page_selector{
     position: absolute;
