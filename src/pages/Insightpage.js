@@ -2,9 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
-import FinanceGraph from './FinanceGraph';
 import EmployeeGraph from './EmployeeGraph';
 import insight_image from '../assets/insight_image.jpeg';
+import { Line } from 'react-chartjs-2';
+
+let sales_data_arr=[];
+let month_data_arr=[];
+let employee_number_arr=[];
+let employee_month_arr=[];
 
 const Insight = () => {
     const [size1, setSize1] = useState([]);
@@ -13,7 +18,8 @@ const Insight = () => {
     const [monthlySales, setMonthlySales] = useState([]);
     const [dailySales, setDailySales] = useState([]);
 
-
+    const [sales_list,set_sales_list]=useState([]);
+    const [employee_count_list,set_employee_count_list]=useState([]);
     useEffect(()=> {
         fetch('http://acslab.toygoon.com:8000/api/insight/', {
             method : "GET"   
@@ -22,7 +28,17 @@ const Insight = () => {
             setSize2(res.size_list.size_two);
             setSize3(res.size_list.size_three);
             setMonthlySales(res.sales_month);
-            setDailySales(res.sales_today);   
+            setDailySales(res.sales_today);
+            set_sales_list(res.sales_list);   
+            for(let i=0;i<5;i++){
+                sales_data_arr.push(res.sales_list[i].sales);
+                month_data_arr.push(res.sales_list[i].month);
+            }   
+            set_employee_count_list(res.employee_count_list); 
+            for(let i=0;i<5;i++){
+                employee_number_arr.push(res.employee_count_list[i].employees);
+                employee_month_arr.push(res.employee_count_list[i].month);
+            }
         });              
     }, []);
 
@@ -35,11 +51,13 @@ const Insight = () => {
                     </div>
                 </TopContent>
                 <MiddleContent>
-                    <div className='box left'>재정현황 그래프
-                        <FinanceGraph/>
+                    <div className='box left'>
+                        <p>재정현황 그래프</p>
+                        <FinanceGraphData></FinanceGraphData>
                     </div>
-                    <div className='box right'>직원 수 그래프
-                        <EmployeeGraph/>
+                    <div className='box right'>
+                        <p>직원 수 그래프</p>
+                        <EmployeeGraphData></EmployeeGraphData>
                     </div>
                 </MiddleContent>
                 <BottomContent>
@@ -108,7 +126,47 @@ const Insight = () => {
         </Container>
     );
 };
+const FinanceGraphData=()=>{
+    let data =  {
+        labels: month_data_arr,
+        datasets: [
+          {
+            type: 'line',
+            label: '매출',
+            backgroundColor: '#007200',
+            data: sales_data_arr,
+            borderColor: '#007200',
+            borderWidth: 2,
+          },
+        ],
+      };
+      return (
+          <div>
+              <Line type="line" data={data} />
+          </div>
+      );
+}
+const EmployeeGraphData=()=>{
 
+    let data =  {
+        labels:employee_month_arr,
+        datasets: [
+          {
+            type: 'bar',
+            label: '직원 수',
+            backgroundColor: 'rgb(353,186,53)',
+            data: employee_number_arr,
+            borderColor: 'rgb(353,186,53)',
+            borderWidth: 1,
+          },
+        ],
+      };
+      return (
+          <div>
+              <Line type="line" data={data} />
+          </div>
+      );
+}
 export default Insight;
 
 const Container = styled.div`
@@ -160,16 +218,28 @@ const TopContent = styled.div`
 
 const MiddleContent = styled.div`
     width: 60vw;
-    height: 40vh;
+    height: 45vh;
     display : flex;
     justify-content: space-between;
 
     .left{
         width: 34vw;
+
+    }
+    .left p{
+        margin-top:2vh;
+        margin-bottom:2vh;
+        font-weight: bold;
     }
     
     .right{
         width: 24vw;
+    }
+    .right p{
+
+        margin-top:2vh;
+        margin-bottom:5vh;
+        font-weight: bold;
     }
 `;
 
