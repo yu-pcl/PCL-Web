@@ -88,7 +88,8 @@ body{
     border-bottom: 1px solid #70707029;
     align-items: center;
     justify-content: space-around;
-    
+    font-weight: bold;
+    font-size: 18px;
 }
 .lead p{
     display: flex;
@@ -118,17 +119,21 @@ body{
     display: flex;
 }
 .list span:first-child{
-    padding-left: 4vw;
+    padding-left: 2.5vw;
     width: 13vw;
 }
 .list span:nth-child(2){
-    padding-left: 1vw;
+    padding-left: 5vw;
     width: 12vw;
 }
 .list span:nth-child(3){
+
+    padding-left: 4vw;
     width: 15vw;
 }
 .list span:nth-child(4){
+
+    padding-left: 8vw;
     width: 15vw;
 }
 .page_selector{
