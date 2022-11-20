@@ -38,20 +38,20 @@ const MemberManage = () => {
   return (
     <div className='wrap'>
       <div className='content'>
-        <span className='member_search'>
+        {/* <span className='member_search'>
           <input type='submit ' name='nn' className='search_input' />
           <button className='search_img'><img src={search_img} /></button>
-        </span>
+        </span> */}
         <div className='drop'>
           <div className='dropdown'>
-            <button className='dropbtn'>
+            {/* <button className='dropbtn'>
               최신등록순
               <span className='down_icon'><img src={downicon} /></span>
             </button>
             <div className='dropdown-content'>
               <p>최신 등록순</p>
               <p>이름순</p>
-            </div>
+            </div> */}
           </div>
           <div>
           <button className='member_modify' onClick={modifyClick}><img src={membermodify} /></button>
