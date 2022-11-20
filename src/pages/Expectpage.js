@@ -138,13 +138,16 @@ const Box = styled.div`
                 justify-content: space-evenly;
     
                 input{
-                    background: #FFFFFF96 0% 0% no-repeat padding-box;
+                    background: #FFFFFF 0% 0% no-repeat padding-box;
                     border-radius: 38px;
                     padding: 13px;
                 }
                 
                 button{
-                    background: #FFFFFF96 0% 0% no-repeat padding-box;
+                    width: 3vw;
+                    height: 4vh;
+                    background: #FFFFFF 0% 0% no-repeat padding-box;
+                    
                 }
             }
     

@@ -225,10 +225,15 @@ const Search = styled.div`
         input{
             width: 200px;
             height: 30px;
+            border:none;
         }
     }
 
     .search_img{
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        border:none;
+    }
+    img{
         width: 32px;
         height: 32px;
     }
@@ -256,6 +261,10 @@ const Top = styled.div`
             justify-content: space-between;
             align-items: center;
             text-align : center;
+            button {
+                width: 3vw;
+                border:none;
+            }
         }
         img{
             width:20px;
