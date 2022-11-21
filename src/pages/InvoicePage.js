@@ -10,6 +10,8 @@ let month = today.getMonth()+1;
 let date = today.getDate();
 
 let worker_id = getCookie("worker_id");
+
+let today_count;
 const InvoicePage = () => {
 
     const [parcel_list, setParcelList] = useState([]);
@@ -46,14 +48,13 @@ const InvoicePage = () => {
                     <div className='gun'>
                         <h2>총</h2>
                         <div className='gaesu'>
-                            <h1>{today_account}</h1>
+                            <h1>{today_count}</h1>
                             <h2>개</h2>
                         </div>
                     </div>
                 </div> 
                 <div className='mainBox'>
                     <div className='lead'>
-                        <p>번호</p>
                         <p>운송장번호</p>
                         <p>접수날짜</p>
                         <p>규격</p>
@@ -63,7 +64,6 @@ const InvoicePage = () => {
                         {parcel_list.map(function (item, i) {
                         return (
                             <div key={i} className="list">
-                            <span>{item.id}</span>
                             <span>{item.num}</span>
                             <span>{item.date}</span>
                             <span>{item.size}</span>
