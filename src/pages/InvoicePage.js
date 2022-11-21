@@ -1,8 +1,8 @@
-import React,  { useState } from 'react';
+import React,  { useState, useEffect } from 'react';
 import '../styles/InvoicePage.css';
 import axios from 'axios';
 import { getCookie } from './Cooke';
-import styled from 'styled-components'; 
+import styled from 'styled-components';
 
 let today = new Date();
 let year = today.getFullYear();
@@ -17,20 +17,22 @@ const InvoicePage = () => {
     const [current_page, setCurrentPage] = useState(1);//현재페이지번호(0부터시작)
     const [today_account, set_today_account] = useState();
 
-    axios.post(`http://acslab.toygoon.com:8000/api/paged_parcel/${worker_id}`, {
-        count_per_page: count_per_page,
-        current_page: current_page,
-    }).then(function (res) {
-        setParcelList(res.data);
-    });
+    useEffect(() =>{
+        axios.post(`http://acslab.toygoon.com:8000/api/paged_parcel/${worker_id}`, {
+            count_per_page: count_per_page,
+            current_page: current_page,
+        }).then(function (res) {
+            setParcelList(res.data);
+        });
 
-    axios.post(`http://acslab.toygoon.com:8000/api/paged_parcel/${worker_id}/today`, {
-        count_per_page: count_per_page,
-        current_page: 0,
-    }).then(function (res) {
-        set_today_account(res.data[0].total_count);
-    });
-
+        axios.post(`http://acslab.toygoon.com:8000/api/paged_parcel/${worker_id}/today`, {
+            count_per_page: count_per_page,
+            current_page: 0,
+        }).then(function (res) {
+            set_today_account(res.data[0].total_count);
+        });
+    }, [current_page]);
+    
     const onClickHandler=(event)=>{
         setCurrentPage(event.currentTarget.value);
     } 

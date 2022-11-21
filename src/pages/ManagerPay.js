@@ -261,9 +261,6 @@ const Top = styled.div`
             justify-content: space-between;
             align-items: center;
             text-align : center;
-            button {
-                width: 3vw;
-            }
         }
         img{
             width:20px;
